@@ -1,0 +1,280 @@
+# Luduvo Luau sandbox API — recovered from release-49 binaries
+# (type definitions embedded in LuduvoGame + LuduvoEditor)
+
+(a: string, b: string, collidable: boolean) -> ()
+(asset: ContentAsset) -> Instance?
+(assetId: string, position: vector, volume: number?) -> boolean
+(bus: number) -> number
+(bus: number, db: number) -> ()
+(button: number) -> boolean
+(center: vector, half: vector, rotation: vector?, out: {Instance}?) -> (number, {Instance})
+(center: vector, radius: number, out: {Instance}?) -> (number, {Instance})
+(character: Instance) -> Instance?
+(component: string) -> () -> Instance?
+(e: Instance) -> boolean
+(entity: Instance) -> ()
+(entity: Instance) -> {string}
+(entity: Instance, name: string) -> ()
+(entity: Instance, tag: string) -> ()
+(entity: Instance, tag: string) -> boolean
+(entity: Instance?) -> ()
+(fn: (...any) -> (), ...any) -> ()
+(from: string, to: string) -> ()
+(hue: number, saturation: number, value: number) -> vector
+(id: number) -> string?
+(id: string, sha256: string?, cb: (asset: ContentAsset?, err: string?) -> ()) -> ContentRequest
+(idOrName: string) -> boolean
+(idOrName: string, replacementIdOrName: string?) -> boolean
+(key: string) -> string
+(keyCode: number) -> boolean
+(message: string) -> ()
+(minX: number?, minY: number?, maxX: number?, maxY: number?) -> Rect
+(name: string) -> ()
+(name: string) -> CloudStore
+(name: string) -> Instance?
+(name: string) -> OrderedCloudStore
+(name: string) -> Store
+(name: string) -> boolean
+(name: string) -> number
+(name: string, direction: EventDirection, fields: {{string | EventFieldType}}) -> EventTable
+(name: string, q: Query, fn: (Query) -> (), phase: string?, after: string?) -> ()
+(name: string?) -> Instance
+(oldIdOrName: string, newIdOrName: string) -> boolean
+(origin: vector, dir: vector, maxDist: number, ignore: Instance?, mask: number?) -> RaycastResult?
+(player: Instance) -> Instance?
+(player: Instance) -> boolean
+(player: Instance) -> string
+(player: Instance, cb: (avatar: AvatarManifest?, err: string?) -> ()) -> ContentRequest
+(player: Instance, character: Instance) -> ()
+(player: Instance, reason: string?) -> boolean
+(points: buffer, count: number, indices: buffer) -> number
+(position: vector, radius: number, force: number) -> number
+(position: vector, radius: number, loudness: number, emitter: Instance?, tag: number?) -> number
+(r: number, g: number, b: number) -> vector
+(relation: string, target: Instance | string) -> Pair
+(scaleX: number?, offsetX: number?, scaleY: number?, offsetY: number?) -> UDim2
+(seconds: number, fn: (...any) -> (), ...any) -> ()
+(seconds: number?) -> number
+(self: Instance) -> ()
+(self: Instance) -> (Instance?, number?)
+(self: Instance) -> (Instance?, vector?, number?, number?)
+(self: Instance) -> (number, number)
+(self: Instance) -> (number, number, number, number)
+(self: Instance) -> AnimPreviewInfo?
+(self: Instance) -> Instance
+(self: Instance) -> MoveIntent?
+(self: Instance) -> SwingTwistJointInfo?
+(self: Instance) -> boolean
+(self: Instance) -> number?
+(self: Instance) -> string?
+(self: Instance) -> vector
+(self: Instance) -> {Instance}
+(self: Instance, accessory: Instance | ContentAsset) -> Instance | boolean
+(self: Instance, amount: number, attacker: Instance?) -> ()
+(self: Instance, ancestor: Instance) -> boolean
+(self: Instance, axis: vector, angle: number) -> ()
+(self: Instance, clip: string) -> number?
+(self: Instance, clip: string, fade: number?, speed: number?) -> ()
+(self: Instance, clip: string, playing: boolean?, time: number?, speed: number?) -> boolean
+(self: Instance, force: vector, at: vector?) -> ()
+(self: Instance, impulse: vector) -> ()
+(self: Instance, impulse: vector, at: vector?) -> ()
+(self: Instance, joint: SwingTwistJointDesc) -> ()
+(self: Instance, name: string) -> ()
+(self: Instance, name: string) -> Component | Instance
+(self: Instance, name: string) -> Instance?
+(self: Instance, name: string) -> Signal
+(self: Instance, name: string) -> boolean
+(self: Instance, name: string, ...any) -> ()
+(self: Instance, name: string, recursive: boolean?) -> Instance?
+(self: Instance, parent: Instance?, keepWorld: boolean?) -> ()
+(self: Instance, position: vector) -> vector
+(self: Instance, range: number, fieldOfView: number, eyeOffsetY: number?, collisionMask: number?) -> ()
+(self: Instance, sensitivity: number, collisionMask: number?) -> ()
+(self: Instance, target: vector, up: vector?, useModelFront: boolean?) -> ()
+(self: Instance, timeSec: number?) -> ()
+(self: Instance, torque: vector) -> ()
+(self: Instance, type: string) -> ()
+(self: Instance, value: number) -> ()
+(self: Instance, velocity: vector) -> ()
+(shape: string, size: vector, from: vector, to: vector, rotation: vector?, out: {ShapecastHit}?) -> (number, {ShapecastHit})
+(tag: string) -> (boolean, string)
+(tag: string) -> Signal
+(tag: string) -> {Instance}
+(target: Instance, property: string, final: any, duration: number) -> Tween
+(type: string, bytes: string) -> {[string]: any}
+(userId: number) -> Instance?
+(userId: number, character: Instance) -> ()
+(userId: number, reason: string?) -> boolean
+(x: number, y: number) -> vector
+(x: number, y: number, z: number) -> vector
+abs: @checked (n: number) -> number,
+abs: @checked (vec: vector) -> vector,
+acos: @checked (n: number) -> number,
+angle: @checked (vec1: vector, vec2: vector, axis: vector?) -> number,
+arshift: @checked (x: number, disp: number) -> number,
+asin: @checked (n: number) -> number,
+atan2: @checked (y: number, x: number) -> number,
+atan: @checked (n: number) -> number,
+band: @checked (...number) -> number,
+bnot: @checked (x: number) -> number,
+bor: @checked (...number) -> number,
+btest: @checked (number, ...number) -> boolean,
+bxor: @checked (...number) -> number,
+byteswap: @checked (n: number) -> number,
+ceil: @checked (n: number) -> number,
+ceil: @checked (vec: vector) -> vector,
+char: @checked (...number) -> string,
+clamp: @checked (n: number, min: number, max: number) -> number,
+clamp: @checked (vec: vector, min: vector, max: vector) -> vector,
+clear: (table: {}) -> (),
+clock: () -> number,
+close: @checked (co: thread) -> (boolean, any)
+codepoint: @checked (str: string, i: number?, j: number?) -> ...number,
+codes: @checked (str: string) -> ((string, number) -> (number, number), string, number),
+components: (self: type) -> {type},
+concat: <V>(t: {V}, sep: string?, i: number?, j: number?) -> string,
+copy: @checked (arg: type) -> type,
+copy: @checked (target: buffer, targetOffset: number, source: buffer, sourceOffset: number?, count: number?) -> (),
+cos: @checked (n: number) -> number,
+cosh: @checked (n: number) -> number,
+countlz: @checked (n: number) -> number,
+countrz: @checked (n: number) -> number,
+create: <A..., R...>(f: (A...) -> R...) -> thread,
+create: <V>(count: number, value: V?) -> {V},
+create: @checked (size: number) -> buffer,
+create: @checked (x: number, y: number, z: number?) -> vector,
+cross: @checked (vec1: vector, vec2: vector) -> vector,
+date: ((formatString: "*t" | "!*t", time: number?) -> DateTypeResult) & ((formatString: string?, time: number?) -> string),
+declare function ipairs<V>(tab: {V}): (({V}, number) -> (number?, V), {V}, number)
+declare function loadstring<A...>(src: string, chunkname: string?): (((A...) -> any)?, string?)
+declare function pcall<A..., R...>(f: (A...) -> R..., ...: A...): (boolean, R...)
+declare function setfenv<T..., R...>(target: number | (T...) -> R..., env: {[string]: any}): ((T...) -> R...)?
+declare function xpcall<E, A..., R1..., R2...>(f: (A...) -> R1..., err: (E) -> R2..., ...: A...): (boolean, R1...)
+deg: @checked (n: number) -> number,
+difftime: (t2: DateTypeResult | number, t1: DateTypeResult | number) -> number,
+dot: @checked (vec1: vector, vec2: vector) -> number,
+exp: @checked (n: number) -> number,
+extract: @checked (n: number, field: number, width: number?) -> number,
+fill: @checked (b: buffer, offset: number, value: number, count: number?) -> (),
+find: <V>(haystack: {V}, needle: V, init: number?) -> number?,
+floor: @checked (n: number) -> number,
+floor: @checked (vec: vector) -> vector,
+fmod: @checked (x: number, y: number) -> number,
+foreach: <K, V>(t: {[K]: V}, f: (K, V) -> ()) -> (),
+foreachi: <V>({V}, (number, V) -> ()) -> (),
+frexp: @checked (n: number) -> (number, number),
+fromstring: @checked (str: string) -> buffer,
+generic: @checked (name: string, ispack: boolean?) -> type,
+generics: (self: type) -> {type},
+getn: <V>(t: {V}) -> number,
+indexer: (self: type) -> { index: type, readresult: type, writeresult: type }?,
+info: ((thread: thread, level: number, options: string) -> ...any) & ((level: number, options: string) -> ...any) & (<A..., R1...>(func: (A...) -> R1..., options: string) -> ...any),
+inner: (self: type) -> type,
+insert: (<V>(t: {V}, value: V) -> ()) & (<V>(t: {V}, pos: number, value: V) -> ()),
+intersectionof: @checked (...type) -> type,
+is: (self: type, arg: string) -> boolean,
+isfinite: @checked (x: number) -> boolean,
+isfrozen: (t: {}) -> boolean,
+isinf: @checked (x: number) -> boolean,
+isnan: @checked (x: number) -> boolean,
+ispack: (self: type) -> boolean,
+isyieldable: () -> boolean,
+ldexp: @checked (s: number, e: number) -> number,
+len: @checked (b: buffer) -> number,
+len: @checked (s: string, i: number?, j: number?) -> (number?, number?),
+lerp: @checked (a: number, b: number, t: number) -> number,
+lerp: @checked (vec1: vector, vec2: vector, t: number) -> vector,
+log10: @checked (n: number) -> number,
+log: @checked (n: number, base: number?) -> number,
+lrotate: @checked (x: number, disp: number) -> number,
+lshift: @checked (x: number, disp: number) -> number,
+magnitude: @checked (vec: vector) -> number,
+map: @checked (x: number, inmin: number, inmax: number, outmin: number, outmax: number) -> number,
+max: @checked (number, ...number) -> number,
+max: @checked (vector, ...vector) -> vector,
+maxn: <V>(t: {V}) -> number,
+metatable: (self: type) -> type?,
+min: @checked (number, ...number) -> number,
+min: @checked (vector, ...vector) -> vector,
+modf: @checked (n: number) -> (number, number),
+move: <V>(src: {V}, a: number, b: number, t: number, dst: {V}?) -> {V},
+name: (self: type) -> string?,
+negationof: @checked (arg: type) -> type,
+newfunction: @checked (parameters: { head: {type}?, tail: type? }?, returns: { head: {type}?, tail: type? }?, generics: {type}?) -> type,
+newtable: @checked (props: {[type]: type} | {[type]: { read: type, write: type } } | nil, indexer: { index: type, readresult: type, writeresult: type }?, metatable: type?) -> type,
+newtable: @checked (props: {[type]: type} | {[type]: { read: type?, write: type? } }?, indexer: { index: type, readresult: type, writeresult: type }?, metatable: type?) -> type,
+noise: @checked (x: number, y: number?, z: number?) -> number,
+normalize: @checked (vec: vector) -> vector,
+offset: @checked (s: string, n: number?, i: number?) -> number,
+optional: @checked (arg: type) -> type,
+pack: <V>(...V) -> { n: number, [number]: V },
+parameters: (self: type) -> { head: {type}?, tail: type? },
+pow: @checked (x: number, y: number) -> number,
+properties: (self: type) -> { [type]: { read: type?, write: type? } },
+rad: @checked (n: number) -> number,
+random: @checked (number?, number?) -> number,
+randomseed: @checked (seed: number) -> (),
+readbits: @checked (b: buffer, bitOffset: number, bitCount: number) -> number,
+readf32: @checked (b: buffer, offset: number) -> number,
+readf64: @checked (b: buffer, offset: number) -> number,
+readi16: @checked (b: buffer, offset: number) -> number,
+readi32: @checked (b: buffer, offset: number) -> number,
+readi8: @checked (b: buffer, offset: number) -> number,
+readindexer: (self: type) -> { index: type, result: type }?,
+readparent: (self: type) -> type?,
+readproperty: (self: type, key: type) -> type?,
+readstring: @checked (b: buffer, offset: number, count: number) -> string,
+readu16: @checked (b: buffer, offset: number) -> number,
+readu32: @checked (b: buffer, offset: number) -> number,
+readu8: @checked (b: buffer, offset: number) -> number,
+remove: <V>(t: {V}, number?) -> V?,
+replace: @checked (n: number, v: number, field: number, width: number?) -> number,
+resume: <A..., R...>(co: thread, A...) -> (boolean, R...),
+returns: (self: type) -> { head: {type}?, tail: type? },
+round: @checked (n: number) -> number,
+rrotate: @checked (x: number, disp: number) -> number,
+rshift: @checked (x: number, disp: number) -> number,
+running: () -> thread,
+setgenerics: (self: type, {type}?) -> (),
+setindexer: (self: type, index: type, result: type) -> (),
+setmetatable: (self: type, arg: type) -> (),
+setparameters: (self: type, head: {type}?, tail: type?) -> (),
+setproperty: (self: type, key: type, value: type?) -> (),
+setreadindexer: (self: type, index: type, result: type) -> (),
+setreadproperty: (self: type, key: type, value: type?) -> (),
+setreturns: (self: type, head: {type}?, tail: type? ) -> (),
+setwriteindexer: (self: type, index: type, result: type) -> (),
+setwriteproperty: (self: type, key: type, value: type?) -> (),
+sign: @checked (n: number) -> number,
+sign: @checked (vec: vector) -> vector,
+sin: @checked (n: number) -> number,
+singleton: @checked (arg: string | boolean | nil) -> type,
+sinh: @checked (n: number) -> number,
+sort: <V>(t: {V}, comp: ((V, V) -> boolean)?) -> (),
+sqrt: @checked (n: number) -> number,
+status: @checked (co: thread) -> "dead" | "running" | "normal" | "suspended",
+tan: @checked (n: number) -> number,
+tanh: @checked (n: number) -> number,
+time: (time: DateTypeArg?) -> number,
+tostring: @checked (b: buffer) -> string,
+traceback: ((message: string?, level: number?) -> string) & ((thread: thread, message: string?, level: number?) -> string),
+unionof: @checked (...type) -> type,
+unpack: <V>(list: {V}, i: number?, j: number?) -> ...V,
+value: (self: type) -> (string | boolean | nil),
+vector::_M_range_check: __n (which is %zu) >= this->size() (which is %zu)
+wrap: <A..., R...>(f: (A...) -> R...) -> ((A...) -> R...),
+writebits: @checked (b: buffer, bitOffset: number, bitCount: number, value: number) -> (),
+writef32: @checked (b: buffer, offset: number, value: number) -> (),
+writef64: @checked (b: buffer, offset: number, value: number) -> (),
+writei16: @checked (b: buffer, offset: number, value: number) -> (),
+writei32: @checked (b: buffer, offset: number, value: number) -> (),
+writei8: @checked (b: buffer, offset: number, value: number) -> (),
+writeindexer: (self: type) -> { index: type, result: type }?,
+writeparent: (self: type) -> type?,
+writeproperty: (self: type, key: type) -> type?,
+writestring: @checked (b: buffer, offset: number, value: string, count: number?) -> (),
+writeu16: @checked (b: buffer, offset: number, value: number) -> (),
+writeu32: @checked (b: buffer, offset: number, value: number) -> (),
+writeu8: @checked (b: buffer, offset: number, value: number) -> (),
+yield: <A..., R...>(A...) -> R...,
