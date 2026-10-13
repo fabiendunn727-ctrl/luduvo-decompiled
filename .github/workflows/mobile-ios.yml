@@ -1,0 +1,9 @@
+name: mobile-ios
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: iOS build
+        run: echo "engine source reconstruction in progress — scaffold ready"
