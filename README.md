@@ -5,6 +5,17 @@
 Everything Luduvo ships in its stable channel, reversed:
 
 - `decompiled/` — Ghidra decompilation (pseudo-C) of all six release binaries: `LuduvoGame` (client) and `LuduvoEditor` (studio) for `windows-x86_64`, `linux-x86_64`, and `macos-arm64`.
+
+| Binary | Platform | Functions decompiled | Output |
+|---|---|---|---|
+| LuduvoGame | linux-x86_64 | 21475 / 22178 | 60MB single file |
+| LuduvoGame | windows-x86_64 | 24384 / 25261 | 53MB single file |
+| LuduvoGame | macos-arm64 | 22890 / 23771 | 62MB single file |
+| LuduvoEditor | linux-x86_64 | 41525 / 44321 | 102MB, 2 parts |
+| LuduvoEditor | windows-x86_64 | 53001 / 55925 | 88MB single file |
+| LuduvoEditor | macos-arm64 | 45640 / 49114 | 122MB, 2 parts |
+
+Each directory also ships `*_functions.txt`, the full function map (address → name → size).
 - `analysis/` — full string tables per binary, plus `SOURCE_TREE_MAP.txt`: the complete 226-file original source tree recovered from assert/log paths (`Platform/spike/...`, `server/...`, `studio/...`, `thirdparty/flecs`, `thirdparty/SDL`).
 - `manifests/` — the Ed25519-signed channel manifests (`channels/stable/<platform>.txt`) straight from `assets.luduvo.com`, with sha256-verified bundle URLs.
 - `docs/` — full 73-page mirror of `docs.luduvo.com` (engine manual + Luau API reference: 60Hz tick, 30Hz replication, Box3D, sandboxed Luau, matchmaking, content-addressed CDN).
