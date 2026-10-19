@@ -1,8 +1,8 @@
 import UIKit
 
 protocol TouchControlDelegate: AnyObject {
-    func touchControl(_ control: TouchControlOverlay, didMoveStick stick: Stick, x: Float, y: Float)
-    func touchControl(_ control: TouchControlOverlay, didPressButton button: Button, pressed: Bool)
+    func touchControl(_ control: TouchControlOverlay, didMoveStick stick: TouchControlOverlay.Stick, x: Float, y: Float)
+    func touchControl(_ control: TouchControlOverlay, didPressButton button: TouchControlOverlay.Button, pressed: Bool)
 }
 
 class TouchControlOverlay: UIView {
@@ -220,7 +220,7 @@ class VirtualStick: UIView {
     private var centerPoint: CGPoint = .zero
     private let radius: CGFloat
 
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         self.radius = min(frame.width, frame.height) / 2
         super.init(frame: frame)
         setup()
@@ -266,7 +266,7 @@ class VirtualStick: UIView {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = trackingTouch, let location = touches.first?.location(in: self) else { return }
+        guard trackingTouch != nil, let location = touches.first?.location(in: self) else { return }
         updateKnob(for: location)
     }
 

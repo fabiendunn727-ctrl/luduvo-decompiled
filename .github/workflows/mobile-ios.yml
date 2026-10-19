@@ -5,10 +5,12 @@ on:
     branches: [main, develop]
     paths:
       - 'mobile/ios/**'
+      - '.github/workflows/mobile-ios.yml'
   pull_request:
     branches: [main]
     paths:
       - 'mobile/ios/**'
+      - '.github/workflows/mobile-ios.yml'
   workflow_dispatch:
 
 concurrency:
@@ -17,8 +19,14 @@ concurrency:
 
 jobs:
   build:
-    name: Build iOS IPA
-    runs-on: macos-latest
+    name: Build iOS IPA (${{ matrix.os }})
+    # GitHub's macOS runner pool is heavily contended, so try both the rolling
+    # image and the pinned one. The first leg to get a runner produces the IPA.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, macos-15]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 45
 
     steps:
@@ -103,7 +111,7 @@ jobs:
       - name: Upload client IPA
         uses: actions/upload-artifact@v4
         with:
-          name: luduvo-ios-client-unsigned
+          name: luduvo-ios-client-unsigned-${{ matrix.os }}
           path: Luduvo-unsigned.ipa
           retention-days: 90
           if-no-files-found: error
@@ -111,7 +119,7 @@ jobs:
       - name: Upload studio IPA
         uses: actions/upload-artifact@v4
         with:
-          name: luduvo-ios-studio-unsigned
+          name: luduvo-ios-studio-unsigned-${{ matrix.os }}
           path: LuduvoStudio-unsigned.ipa
           retention-days: 90
           if-no-files-found: error
