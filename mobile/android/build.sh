@@ -27,10 +27,16 @@ mkdir -p "$OUT/dex" "$OUT/classes"
 cd "$HERE"
 
 "$BT/aapt2" compile --dir app/src/main/res -o "$OUT/res.zip"
-"$BT/aapt2" link -o "$OUT/base.apk" -I "$AJ" --manifest app/src/main/AndroidManifest.xml \
-    --min-sdk-version 24 --target-sdk-version 34 \
-    --auto-add-overlay -A "$HERE/app/src/main/assets" \
-    "$OUT/res.zip"
+if [ -d "$HERE/app/src/main/assets" ]; then
+    "$BT/aapt2" link -o "$OUT/base.apk" -I "$AJ" --manifest app/src/main/AndroidManifest.xml \
+        --min-sdk-version 24 --target-sdk-version 34 \
+        --auto-add-overlay -A "$HERE/app/src/main/assets" \
+        "$OUT/res.zip"
+else
+    "$BT/aapt2" link -o "$OUT/base.apk" -I "$AJ" --manifest app/src/main/AndroidManifest.xml \
+        --min-sdk-version 24 --target-sdk-version 34 \
+        --auto-add-overlay "$OUT/res.zip"
+fi
 
 find app/src/main/java -name "*.java" > "$OUT/sources.txt"
 javac -source 17 -target 17 -classpath "$AJ" -d "$OUT/classes" @"$OUT/sources.txt"
