@@ -25,11 +25,13 @@ typedef NS_ENUM(NSInteger, LuduvoTouchButton) {
 };
 
 // Physical gamepad buttons.
+// The case names are spelled out because the Swift importer keeps a
+// single-letter remainder (A, B, X, Y) instead of stripping the prefix.
 typedef NS_ENUM(NSInteger, LuduvoGamepadButton) {
-    LuduvoGamepadButtonA = 0,
-    LuduvoGamepadButtonB = 1,
-    LuduvoGamepadButtonX = 2,
-    LuduvoGamepadButtonY = 3
+    LuduvoGamepadButtonCross = 0,
+    LuduvoGamepadButtonCircle = 1,
+    LuduvoGamepadButtonSquare = 2,
+    LuduvoGamepadButtonTriangle = 3
 };
 
 // Physical gamepad triggers.
