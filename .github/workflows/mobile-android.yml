@@ -1,11 +1,64 @@
 name: mobile-android
-on: [push, workflow_dispatch]
+run-name: Build Android APK
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'mobile/android/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'mobile/android/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
+    name: Build Android APK
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with: { distribution: temurin, java-version: 21 }
-      - name: Android build
-        run: echo "engine source reconstruction in progress — scaffold ready"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Android SDK
+        run: |
+          mkdir -p sdk
+          curl -fL -o sdk/platform.zip https://dl.google.com/android/repository/platform-34-ext7_r03.zip
+          curl -fL -o sdk/bt.zip https://dl.google.com/android/repository/build-tools_r34-linux.zip
+          unzip -oq sdk/platform.zip -d sdk/
+          unzip -oq sdk/bt.zip -d sdk/
+          ls sdk
+
+      - name: Build APK
+        working-directory: mobile/android
+        env:
+          SDK_DIR: ${{ github.workspace }}/sdk
+        run: |
+          sh build.sh
+          ls -la build/luduvo.apk
+
+      - name: Verify signature
+        working-directory: mobile/android
+        env:
+          BT: ${{ github.workspace }}/sdk/android-14
+        run: $BT/apksigner verify --verbose build/luduvo.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: luduvo-android-client
+          path: mobile/android/build/luduvo.apk
+          retention-days: 90
+          if-no-files-found: error

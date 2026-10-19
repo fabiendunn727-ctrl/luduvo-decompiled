@@ -1,22 +1,20 @@
 <resources>
-    <style name="Theme.Luduvo" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/luduvo_primary</item>
-        <item name="colorPrimaryContainer">@color/luduvo_primary_container</item>
-        <item name="colorSecondary">@color/luduvo_secondary</item>
-        <item name="colorSurface">@color/luduvo_surface</item>
-        <item name="colorBackground">@color/luduvo_background</item>
-        <item name="colorOnPrimary">@color/luduvo_on_primary</item>
-        <item name="colorOnSurface">@color/luduvo_on_surface</item>
+    <!-- Framework-only theme so the client has no third-party dependencies. -->
+    <style name="Theme.Luduvo" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">@color/luduvo_primary</item>
+        <item name="android:colorPrimaryDark">@color/luduvo_primary_container</item>
+        <item name="android:colorAccent">@color/luduvo_secondary</item>
         <item name="android:windowBackground">@color/luduvo_background</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/luduvo_on_surface</item>
     </style>
 
     <style name="Theme.Luduvo.Fullscreen" parent="Theme.Luduvo">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="Theme.Luduvo.Splash" parent="Theme.Luduvo.Fullscreen">

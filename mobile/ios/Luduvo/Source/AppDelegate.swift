@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Create window
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = GameViewController(engine: engine)
+        window?.rootViewController = rootViewController(for: engine)
         window?.makeKeyAndVisible()
 
         // Keep screen on
@@ -55,6 +55,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+    /// The studio target (com.luduvo.studio) opens the editor, the client
+    /// target (com.luduvo.client) opens the game.
+    private func rootViewController(for engine: LuduvoEngine) -> UIViewController {
+        if Bundle.main.bundleIdentifier == "com.luduvo.studio" {
+            return EditorViewController()
+        }
+        return GameViewController(engine: engine)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
