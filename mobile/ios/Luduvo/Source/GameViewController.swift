@@ -103,26 +103,48 @@ class GameViewController: UIViewController {
         guard let controller else { return }
         controller.microGamepad?.allowsRotation = true
         controller.microGamepad?.reportsAbsoluteDpadValues = true
-        controller.microGamepad?.dpad.valueChangedHandler = { [weak self] dpad, x, y in
-            self?.engine?.gamepadDPad(x: x, y: y)
-        }
-        controller.microGamepad?.buttonA.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadButton(.a, value: value, pressed: pressed)
-        }
-        controller.microGamepad?.buttonB.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadButton(.b, value: value, pressed: pressed)
-        }
-        controller.microGamepad?.buttonX.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadButton(.x, value: value, pressed: pressed)
-        }
-        controller.microGamepad?.buttonY.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadButton(.y, value: value, pressed: pressed)
-        }
-        controller.microGamepad?.leftTrigger.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadTrigger(.left, value: value, pressed: pressed)
-        }
-        controller.microGamepad?.rightTrigger.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadTrigger(.right, value: value, pressed: pressed)
+
+        // GCMicroGamepad only exposes the d-pad and the A/B buttons. The full
+        // button set and the triggers live on the extended gamepad, so prefer
+        // it and fall back to the plain gamepad.
+        if let pad = controller.extendedGamepad {
+            pad.dpad.valueChangedHandler = { [weak self] _, x, y in
+                self?.engine?.gamepadDPad(x: x, y: y)
+            }
+            pad.buttonA.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.a, value: value, pressed: pressed)
+            }
+            pad.buttonB.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.b, value: value, pressed: pressed)
+            }
+            pad.buttonX.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.x, value: value, pressed: pressed)
+            }
+            pad.buttonY.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.y, value: value, pressed: pressed)
+            }
+            pad.leftTrigger.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadTrigger(.left, value: value, pressed: pressed)
+            }
+            pad.rightTrigger.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadTrigger(.right, value: value, pressed: pressed)
+            }
+        } else if let pad = controller.gamepad {
+            pad.dpad.valueChangedHandler = { [weak self] _, x, y in
+                self?.engine?.gamepadDPad(x: x, y: y)
+            }
+            pad.buttonA.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.a, value: value, pressed: pressed)
+            }
+            pad.buttonB.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.b, value: value, pressed: pressed)
+            }
+            pad.buttonX.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.x, value: value, pressed: pressed)
+            }
+            pad.buttonY.valueChangedHandler = { [weak self] _, value, pressed in
+                self?.engine?.gamepadButton(.y, value: value, pressed: pressed)
+            }
         }
     }
 
