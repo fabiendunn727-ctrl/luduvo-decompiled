@@ -21,37 +21,17 @@ public:
             return false;
         }
 
-        // Initialize the engine's Vulkan backend with MoltenVK
-        VkInstance instance = VK_NULL_HANDLE;
-        VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-        VkDevice device = VK_NULL_HANDLE;
-        VkQueue graphicsQueue = VK_NULL_HANDLE;
-        VkSurfaceKHR surface = VK_NULL_HANDLE;
-
-        VkResult result = ldv_moltenvk_initialize(&instance, &physicalDevice, &device,
-                                                  &graphicsQueue);
-        if (result != VK_SUCCESS) {
-            return false;
-        }
-
-        instance_ = instance;
-        physicalDevice_ = physicalDevice;
-        device_ = device;
-        graphicsQueue_ = graphicsQueue;
-
-        // Create the surface for the CAMetalLayer owned by the MTKView
-        result = ldv_moltenvk_create_surface(instance, metalLayer, &surface);
-        if (result != VK_SUCCESS) {
-            ldv_moltenvk_cleanup(device, VK_NULL_HANDLE, VK_NULL_HANDLE, instance);
-            return false;
-        }
-        surface_ = surface;
-
-        // Initialize MoltenVK swapchain
+        // The swapchain owns the Vulkan instance/device/surface for the
+        // lifetime of the platform layer.
         if (!swapchain_.initialize(metalLayer, width, height)) {
-            ldv_moltenvk_cleanup(device, VK_NULL_HANDLE, surface, instance);
             return false;
         }
+
+        instance_ = swapchain_.getInstance();
+        physicalDevice_ = swapchain_.getPhysicalDevice();
+        device_ = swapchain_.getDevice();
+        graphicsQueue_ = swapchain_.getGraphicsQueue();
+        surface_ = swapchain_.getSurface();
 
         initialized_ = true;
         return true;
@@ -60,7 +40,6 @@ public:
     void shutdown() {
         if (initialized_) {
             swapchain_.cleanup();
-            ldv_moltenvk_cleanup(device_, VK_NULL_HANDLE, surface_, instance_);
             initialized_ = false;
         }
     }

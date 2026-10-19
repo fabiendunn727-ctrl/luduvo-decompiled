@@ -271,7 +271,8 @@ bool Swapchain::initialize(void *metalLayer, uint32_t width, uint32_t height) {
 
     result = ldv_moltenvk_create_surface(instance, metalLayer, &surface);
     if (result != VK_SUCCESS) {
-        ldv_moltenvk_cleanup(device, VK_NULL_HANDLE, VK_NULL_HANDLE, instance);
+        vkDestroyDevice(device, nullptr);
+        vkDestroyInstance(instance, nullptr);
         return false;
     }
 
@@ -299,8 +300,21 @@ void Swapchain::cleanup() {
             vkDestroySwapchainKHR(device_, swapchain_, nullptr);
         }
     }
+    if (instance_ != VK_NULL_HANDLE) {
+        if (surface_ != VK_NULL_HANDLE) {
+            vkDestroySurfaceKHR(instance_, surface_, nullptr);
+        }
+        if (device_ != VK_NULL_HANDLE) {
+            vkDestroyDevice(device_, nullptr);
+        }
+        vkDestroyInstance(instance_, nullptr);
+    }
     swapchain_ = VK_NULL_HANDLE;
+    surface_ = VK_NULL_HANDLE;
     device_ = VK_NULL_HANDLE;
+    instance_ = VK_NULL_HANDLE;
+    graphicsQueue_ = VK_NULL_HANDLE;
+    physicalDevice_ = VK_NULL_HANDLE;
     imageCount_ = 0;
     format_ = VK_FORMAT_UNDEFINED;
     extent_ = {0, 0};
