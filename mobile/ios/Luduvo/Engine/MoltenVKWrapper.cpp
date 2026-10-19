@@ -41,7 +41,7 @@ VkResult ldv_moltenvk_initialize(VkInstance *instance,
     appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
     appInfo.pEngineName = "Luduvo";
     appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_1;
+    appInfo.apiVersion = VK_API_VERSION_1_3;
 
     const char *extensions[] = {
         VK_EXT_METAL_SURFACE_EXTENSION_NAME,
@@ -108,7 +108,7 @@ VkResult ldv_moltenvk_initialize(VkInstance *instance,
     deviceInfo.pEnabledFeatures = &features;
 
     VkDevice createdDevice = VK_NULL_HANDLE;
-    result = vkCreateDevice(createdInstance, &deviceInfo, nullptr, &createdDevice);
+    result = vkCreateDevice(selected, &deviceInfo, nullptr, &createdDevice);
     if (result != VK_SUCCESS) {
         vkDestroyInstance(createdInstance, nullptr);
         return result;
@@ -165,8 +165,9 @@ VkResult ldv_moltenvk_create_swapchain(VkDevice device,
         count = capabilities.maxImageCount;
     }
 
+    uint32_t formatCount = 1;
     VkSurfaceFormatKHR surfaceFormat = {};
-    vkGetPhysicalDeviceSurfaceFormatsKHR(physicalDevice, surface, 1, &surfaceFormat);
+    vkGetPhysicalDeviceSurfaceFormatsKHR(physicalDevice, surface, &formatCount, &surfaceFormat);
     if (surfaceFormat.format == VK_FORMAT_UNDEFINED) {
         surfaceFormat = { VK_FORMAT_B8G8R8A8_SRGB, VK_COLOR_SPACE_SRGB_NONLINEAR_KHR };
     }
