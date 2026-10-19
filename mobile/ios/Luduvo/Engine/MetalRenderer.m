@@ -7,11 +7,10 @@
 @property (nonatomic, strong) id<MTLDevice> device;
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
-@property (nonatomic, strong) MTLDepthStencilState *depthStencilState;
+@property (nonatomic, strong) id<MTLDepthStencilState> *depthStencilState;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, assign) CFTimeInterval lastFrameTime;
 @property (nonatomic, assign) NSUInteger frameCount;
-@property (nonatomic, assign) float fps;
 @end
 
 @implementation MetalRenderer
