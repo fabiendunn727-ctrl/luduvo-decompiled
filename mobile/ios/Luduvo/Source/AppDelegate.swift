@@ -1,11 +1,10 @@
 import UIKit
-import SwiftUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var engine: LuduvoEngine?
+    private let engine = LuduvoEngine()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Load native engine library
@@ -13,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Create window
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = GameViewController()
+        window?.rootViewController = rootViewController(for: engine)
         window?.makeKeyAndVisible()
 
         // Keep screen on
@@ -38,8 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let port = parts.count > 2 ? Int(parts[2]) ?? 55000 : 55000
         let pubkey = parts.count > 3 ? parts[3] : ""
 
-        let config = JoinConfig(token: token, host: host, port: port, pubkey: pubkey)
-
         // Write config to documents directory
         if let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let configURL = documents.appendingPathComponent("luduvo_join.json")
@@ -54,22 +51,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try? json.write(to: configURL, atomically: true, encoding: .utf8)
 
             // Start engine with config
-            engine?.start(configPath: configURL.path)
+            engine.start(configPath: configURL.path)
         }
 
         return true
     }
 
+    /// The studio target (com.luduvo.studio) opens the editor, the client
+    /// target (com.luduvo.client) opens the game.
+    private func rootViewController(for engine: LuduvoEngine) -> UIViewController {
+        if Bundle.main.bundleIdentifier == "com.luduvo.studio" {
+            return EditorViewController()
+        }
+        return GameViewController(engine: engine)
+    }
+
     func applicationWillResignActive(_ application: UIApplication) {
-        engine?.pause()
+        engine.pause()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        engine?.resume()
+        engine.resume()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        engine?.shutdown()
+        engine.shutdown()
     }
 }
 

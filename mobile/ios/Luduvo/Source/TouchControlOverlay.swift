@@ -124,8 +124,63 @@ class TouchControlOverlay: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         // Reposition on rotation
-        setupSticks()
-        setupButtons()
+        layoutSticks()
+        layoutButtons()
+    }
+
+    private func layoutSticks() {
+        let stickSize = min(bounds.width, bounds.height) * 0.25
+        let margin: CGFloat = 24
+
+        leftStick?.frame = CGRect(
+            x: margin,
+            y: bounds.height - stickSize - margin,
+            width: stickSize,
+            height: stickSize
+        )
+        rightStick?.frame = CGRect(
+            x: bounds.width - stickSize - margin,
+            y: bounds.height - stickSize - margin,
+            width: stickSize,
+            height: stickSize
+        )
+    }
+
+    private func layoutButtons() {
+        let buttonSize: CGFloat = 64
+        let margin: CGFloat = 24
+        let spacing: CGFloat = 16
+
+        buttons[.jump]?.frame = CGRect(
+            x: bounds.width - buttonSize - margin,
+            y: bounds.height - buttonSize * 2 - margin * 2 - spacing,
+            width: buttonSize,
+            height: buttonSize
+        )
+        buttons[.sprint]?.frame = CGRect(
+            x: bounds.width - buttonSize * 2 - margin - spacing,
+            y: bounds.height - buttonSize * 2 - margin * 2 - spacing,
+            width: buttonSize,
+            height: buttonSize
+        )
+        buttons[.action]?.frame = CGRect(
+            x: bounds.width - buttonSize * 3 - margin - spacing * 2,
+            y: bounds.height - buttonSize * 2 - margin * 2 - spacing,
+            width: buttonSize,
+            height: buttonSize
+        )
+        buttons[.inventory]?.frame = CGRect(
+            x: bounds.width - buttonSize - margin,
+            y: margin + 44, // Below status bar
+            width: buttonSize,
+            height: buttonSize
+        )
+        buttons[.chat]?.frame = CGRect(
+            x: bounds.width - buttonSize * 2 - margin - spacing,
+            y: margin + 44,
+            width: buttonSize,
+            height: buttonSize
+        )
     }
 
     func update(dt: Float) {

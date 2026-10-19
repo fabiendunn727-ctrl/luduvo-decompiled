@@ -1,0 +1,17 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# The project is generated - see mobile/ios/scripts/generate_project.rb
+# Luduvo.xcodeproj is committed, but local Xcode state is not.
+
+# macOS
+.DS_Store
