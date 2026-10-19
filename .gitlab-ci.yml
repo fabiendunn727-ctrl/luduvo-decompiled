@@ -1,0 +1,50 @@
+# GitLab CI for Android native builds
+# Free shared runners on gitlab.com
+
+stages:
+  - build
+  - test
+
+variables:
+  GRADLE_OPTS: "-Xmx4g -Dorg.gradle.daemon=false"
+
+android_build:
+  stage: build
+  image: cirrusci/android-sdk:35
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq wget unzip > /dev/null
+    - export ANDROID_SDK_ROOT=/opt/android-sdk
+    - export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools
+    - yes | sdkmanager --licenses > /dev/null
+    - sdkmanager "platforms;android-35" "build-tools;34.0.0" "cmake;3.22.1" "ndk;26.1.10909125" > /dev/null
+  script:
+    - cd mobile/android
+    - chmod +x gradlew
+    - ./gradlew assembleRelease --stacktrace --no-daemon
+  artifacts:
+    paths:
+      - mobile/android/app/build/outputs/apk/release/*.apk
+      - mobile/android/app/build/outputs/bundle/release/*.aab
+    expire_in: 30 days
+  only:
+    - main
+    - develop
+  tags:
+    - shared-linux
+
+android_test:
+  stage: test
+  image: cirrusci/android-sdk:35
+  before_script:
+    - export ANDROID_SDK_ROOT=/opt/android-sdk
+    - export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools
+    - yes | sdkmanager --licenses > /dev/null
+    - sdkmanager "platforms;android-35" "build-tools;34.0.0" > /dev/null
+  script:
+    - cd mobile/android
+    - ./gradlew testDebugUnitTest --stacktrace --no-daemon
+  only:
+    - main
+    - develop
+  tags:
+    - shared-linux

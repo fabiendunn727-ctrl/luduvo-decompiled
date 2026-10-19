@@ -1,0 +1,104 @@
+# Bitrise.io config - FREE for open source (includes macOS runners)
+# Push to GitHub, connect repo at bitrise.io, builds run on their macOS/Linux infra
+
+format_version: '11'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+project_type: ios
+
+workflows:
+  ios_build:
+    name: iOS Native Engine Build
+    description: Build unsigned IPA for sideloading via Bitrise macOS
+    envs:
+      - opts:
+          is_expand: false
+        PROJECT_PATH: "mobile/ios/Luduvo.xcodeproj"
+      - opts:
+          is_expand: false
+        SCHEME: "Luduvo"
+      - opts:
+          is_expand: false
+        CONFIGURATION: "Release"
+    steps:
+      - activate-ssh-key@4:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@6: {}
+      - cache-pull@2: {}
+      - xcode-build@3:
+          inputs:
+            - project_path: $PROJECT_PATH
+            - scheme: $SCHEME
+            - configuration: $CONFIGURATION
+            - export_method: "ad-hoc"
+            - is_clean_build: 'true'
+            - generate_ipa: 'true'
+            - output_dir: "$BITRISE_DEPLOY_DIR"
+            - xcodebuild_options: |
+                CODE_SIGNING_ALLOWED=NO
+                CODE_SIGN_IDENTITY=""
+                CODE_SIGNING_REQUIRED=NO
+                PROVISIONING_PROFILE=""
+                ENABLE_BITCODE=NO
+                ONLY_ACTIVE_ARCH=NO
+                ARCHS="arm64 arm64e"
+      - deploy-to-bitrise-io@2: {}
+
+  ios_editor_build:
+    name: iOS Editor Build
+    envs:
+      - opts:
+          is_expand: false
+        PROJECT_PATH: "mobile/ios/Luduvo.xcodeproj"
+      - opts:
+          is_expand: false
+        SCHEME: "LuduvoEditor"
+      - opts:
+          is_expand: false
+        CONFIGURATION: "Release"
+    steps:
+      - git-clone@6: {}
+      - xcode-build@3:
+          inputs:
+            - project_path: $PROJECT_PATH
+            - scheme: $SCHEME
+            - configuration: $CONFIGURATION
+            - export_method: "ad-hoc"
+            - generate_ipa: 'true'
+            - output_dir: "$BITRISE_DEPLOY_DIR"
+            - xcodebuild_options: |
+                CODE_SIGNING_ALLOWED=NO
+                CODE_SIGN_IDENTITY=""
+                CODE_SIGNING_REQUIRED=NO
+                ENABLE_BITCODE=NO
+
+  android_build:
+    name: Android Native Engine Build
+    project_type: android
+    envs:
+      - opts:
+          is_expand: false
+        GRADLE_FILE: "mobile/android/app/build.gradle.kts"
+      - opts:
+          is_expand: false
+        GRADLE_TASK: "assembleRelease"
+    steps:
+      - git-clone@6: {}
+      - cache-pull@2: {}
+      - gradle-runner@2:
+          inputs:
+            - gradle_file: $GRADLE_FILE
+            - gradle_task: $GRADLE_TASK
+            - project_location: "mobile/android"
+      - deploy-to-bitrise-io@2: {}
+
+app:
+  envs:
+    - opts:
+        is_expand: false
+      BITRISE_PROJECT_TITLE: "Luduvo Native Mobile"
+
+meta:
+  bitrise.io:
+    machine_type_id: "macos-m1-machine"  # Free tier gets M1 macOS
+    stack_id: "macos-14-xcode-15"  # Free for open source
