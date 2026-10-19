@@ -59,7 +59,7 @@ project.build_configurations.each do |config|
     'DEBUG_INFORMATION_FORMAT' => 'dwarf-with-dsym',
     'ENABLE_TESTABILITY' => 'YES',
     'GCC_OPTIMIZATION_LEVEL' => 's',
-    'MTL_ENABLE_DEBUG_INFO' => 'INCLUDE_SOURCE',
+    'MTL_ENABLE_DEBUG_INFO' => 'NO',
     'MTL_FAST_MATH' => 'YES',
     'ONLY_ACTIVE_ARCH' => 'NO',
     'SWIFT_OPTIMIZATION_LEVEL' => '-O',
@@ -197,7 +197,7 @@ def configure(app_target, sources, engine_files, resources, framework_refs,
       ],
       'LDV_PLATFORM_IOS' => '1',
       'LDV_ENABLE_MOLTENVK' => '1',
-      'MTL_ENABLE_DEBUG_INFO' => 'INCLUDE_SOURCE',
+      'MTL_ENABLE_DEBUG_INFO' => 'NO',
       'DEAD_CODE_STRIPPING' => 'YES'
     )
     config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']

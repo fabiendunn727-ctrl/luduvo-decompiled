@@ -20,8 +20,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-    <!-- Vulkan feature -->
-    <uses-feature android:name="android.hardware.vulkan.version" android:required="true" />
+    <!-- Vulkan feature: only needed when the native engine library is present -->
+    <uses-feature android:name="android.hardware.vulkan.version" android:required="false" />
     <uses-feature android:name="android.hardware.vulkan.compute" android:required="false" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="true" />
     <uses-feature android:name="android.hardware.gamepad" android:required="false" />
