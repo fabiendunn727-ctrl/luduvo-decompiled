@@ -7,7 +7,7 @@
 @property (nonatomic, strong) id<MTLDevice> device;
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
-@property (nonatomic, strong) id<MTLDepthStencilState> *depthStencilState;
+@property (nonatomic, strong) id<MTLDepthStencilState> depthStencilState;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, assign) CFTimeInterval lastFrameTime;
 @property (nonatomic, assign) NSUInteger frameCount;
@@ -70,7 +70,7 @@
 - (void)setupDepthStencil {
     MTLDepthStencilDescriptor *desc = [[MTLDepthStencilDescriptor alloc] init];
     desc.depthCompareFunction = MTLCompareFunctionLess;
-    desc.isDepthWriteEnabled = YES;
+    desc.depthWriteEnabled = YES;
     _depthStencilState = [_device newDepthStencilStateWithDescriptor:desc];
 }
 
