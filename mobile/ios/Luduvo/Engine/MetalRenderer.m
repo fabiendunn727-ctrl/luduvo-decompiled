@@ -7,7 +7,7 @@
 @property (nonatomic, strong) id<MTLDevice> device;
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
-@property (nonatomic, strong) id<MTLDepthStencilState> depthStencilState;
+@property (nonatomic, strong) MTLDepthStencilState *depthStencilState;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, assign) CFTimeInterval lastFrameTime;
 @property (nonatomic, assign) NSUInteger frameCount;
@@ -27,7 +27,7 @@
         view.device = _device;
         view.colorPixelFormat = MTLPixelFormatBGRA8Unorm;
         view.depthStencilPixelFormat = MTLPixelFormatDepth32Float;
-        view.sampleCount = 4;
+        view.sampleCount = 1;
         view.preferredFramesPerSecond = 60;
 
         [self setupPipeline];
@@ -39,8 +39,24 @@
 
 - (void)setupPipeline {
     MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
-    desc.vertexFunction = nil; // Will be set by engine
-    desc.fragmentFunction = nil;
+
+    // Load the compiled shader from the default library.
+    id<MTLLibrary> library = [_device newDefaultLibrary];
+    if (!library) {
+        NSLog(@"[MetalRenderer] No default Metal library - skipping pipeline");
+        return;
+    }
+
+    id<MTLFunction> vertexFunction = [library newFunctionWithName:@"ldv_shell_vertex"];
+    id<MTLFunction> fragmentFunction = [library newFunctionWithName:@"ldv_shell_fragment"];
+
+    if (!vertexFunction || !fragmentFunction) {
+        NSLog(@"[MetalRenderer] Shader functions missing - skipping pipeline");
+        return;
+    }
+
+    desc.vertexFunction = vertexFunction;
+    desc.fragmentFunction = fragmentFunction;
     desc.colorAttachments[0].pixelFormat = _metalView.colorPixelFormat;
     desc.depthAttachmentPixelFormat = _metalView.depthStencilPixelFormat;
     desc.sampleCount = _metalView.sampleCount;
@@ -84,9 +100,9 @@
 #pragma mark - MTKViewDelegate
 
 - (void)drawInMTKView:(MTKView *)view {
-    // The engine renders directly via MoltenVK/Vulkan backend
-    // This is a placeholder - the actual rendering happens in the C++ engine
-    // which uses MoltenVK to submit to Metal
+    // The engine renders directly via MoltenVK/Vulkan backend when the native
+    // engine library is present. Without it we draw the shell gradient so the
+    // client is visibly alive.
     [self drawFrame];
 }
 
@@ -95,12 +111,24 @@
 }
 
 - (void)drawFrame {
-    // Engine renders via MoltenVK - this is a no-op for the Metal view
-    // The engine's Vulkan backend (via MoltenVK) will present to the CAMetalLayer
-    // We just ensure the drawable is available
-    if (_metalView.currentDrawable) {
-        // Present handled by engine
+    if (!_pipelineState) {
+        return;
     }
+
+    MTLRenderPassDescriptor *renderPassDescriptor = _metalView.currentRenderPassDescriptor;
+    if (!renderPassDescriptor) {
+        return;
+    }
+
+    id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];
+    id<MTLRenderCommandEncoder> encoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];
+
+    [encoder setRenderPipelineState:_pipelineState];
+    [encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];
+    [encoder endEncoding];
+
+    [commandBuffer presentDrawable:_metalView.currentDrawable];
+    [commandBuffer commit];
 }
 
 - (void)resizeWithWidth:(NSInteger)width height:(NSInteger)height {

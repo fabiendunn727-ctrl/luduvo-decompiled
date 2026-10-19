@@ -11,6 +11,15 @@ class GameViewController: UIViewController {
     private var displayLink: CADisplayLink?
     private var lastFrameTime: CFTimeInterval = 0
 
+    init(engine: LuduvoEngine) {
+        self.engine = engine
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +40,7 @@ class GameViewController: UIViewController {
         metalView.device = MTLCreateSystemDefaultDevice()
         metalView.colorPixelFormat = .bgra8Unorm
         metalView.depthStencilPixelFormat = .depth32Float
-        metalView.sampleCount = 4
+        metalView.sampleCount = 1
         metalView.preferredFramesPerSecond = 60
         metalView.enableSetNeedsDisplay = false
         metalView.isPaused = false
@@ -48,7 +57,6 @@ class GameViewController: UIViewController {
     }
 
     private func setupEngine() {
-        engine = LuduvoEngine()
         engine.metalView = metalView
         engine.renderer = renderer
 
@@ -83,7 +91,7 @@ class GameViewController: UIViewController {
             forName: .GCControllerDidDisconnect,
             object: nil,
             queue: .main
-        ) { [weak self] notification in
+        ) { [weak self] _ in
             self?.engine?.gamepadDisconnected()
         }
 
@@ -92,7 +100,7 @@ class GameViewController: UIViewController {
     }
 
     private func configureController(_ controller: GCController?) {
-        guard let controller = controller else { return }
+        guard let controller else { return }
         controller.microGamepad?.allowsRotation = true
         controller.microGamepad?.reportsAbsoluteDpadValues = true
         controller.microGamepad?.dpad.valueChangedHandler = { [weak self] dpad, x, y in
@@ -111,10 +119,10 @@ class GameViewController: UIViewController {
             self?.engine?.gamepadButton(.y, value: value, pressed: pressed)
         }
         controller.microGamepad?.leftTrigger.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadTrigger(.left, value: value)
+            self?.engine?.gamepadTrigger(.left, value: value, pressed: pressed)
         }
         controller.microGamepad?.rightTrigger.valueChangedHandler = { [weak self] _, value, pressed in
-            self?.engine?.gamepadTrigger(.right, value: value)
+            self?.engine?.gamepadTrigger(.right, value: value, pressed: pressed)
         }
     }
 
@@ -135,8 +143,8 @@ class GameViewController: UIViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: nil) { _ in
-            self.engine?.resize(width: Int(size.width), height: Int(size.height))
+        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            self?.engine?.resize(width: Int(size.width), height: Int(size.height))
         }
     }
 
@@ -149,10 +157,19 @@ class GameViewController: UIViewController {
 
 extension GameViewController: TouchControlDelegate {
     func touchControl(_ control: TouchControlOverlay, didMoveStick stick: TouchControlOverlay.Stick, x: Float, y: Float) {
-        engine?.touchStick(stick == .left ? .move : .look, x: x, y: y)
+        let engineStick: LuduvoTouchStick = (stick == .left) ? .move : .look
+        engine?.touchStick(engineStick, x: x, y: y)
     }
 
     func touchControl(_ control: TouchControlOverlay, didPressButton button: TouchControlOverlay.Button, pressed: Bool) {
-        engine?.touchButton(button, pressed: pressed)
+        let engineButton: LuduvoTouchButton
+        switch button {
+        case .jump: engineButton = .jump
+        case .sprint: engineButton = .sprint
+        case .action: engineButton = .action
+        case .inventory: engineButton = .inventory
+        case .chat: engineButton = .chat
+        }
+        engine?.touchButton(engineButton, pressed: pressed)
     }
 }

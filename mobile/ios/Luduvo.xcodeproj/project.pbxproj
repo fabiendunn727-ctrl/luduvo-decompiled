@@ -3,386 +3,506 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ABCDEF01 /* LuduvoEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF02 /* LuduvoEngine.mm */; };
-		ABCDEF03 /* MetalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF04 /* MetalRenderer.m */; };
-		ABCDEF05 /* MoltenVKWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF06 /* MoltenVKWrapper.cpp */; };
-		ABCDEF07 /* EngineBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF08 /* EngineBridge.cpp */; };
-		ABCDEF09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF10 /* main.m */; };
-		ABCDEF11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF12 /* AppDelegate.swift */; };
-		ABCDEF13 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF14 /* GameViewController.swift */; };
-		ABCDEF15 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDEF16 /* EditorViewController.swift */; };
-		ABCDEF17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABCDEF18 /* Assets.xcassets */; };
-		ABCDEF19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABCDEF20 /* LaunchScreen.storyboard */; };
-		ABCDEF21 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABCDEF22 /* Info.plist */; };
-		ABCDEF23 /* luduvo.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABCDEF24 /* luduvo.entitlements */; };
+		00BD3ED57CA9667C0E61E04D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCA4328330D0F900DB50924 /* AppDelegate.swift */; };
+		07D04594FE8E72ECFB7A33C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1954EE42351FC8E29144FCA /* CoreGraphics.framework */; };
+		09F3F82E4FC4C838D1D2B56A /* LuduvoEngineShim.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAC9B591F71802B540FA4EE /* LuduvoEngineShim.m */; };
+		0B32285107165CBF5F7E8EB8 /* TouchControlOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B40E2B22D000F06EF688CC4 /* TouchControlOverlay.swift */; };
+		14C0E9A432B137BEE227D98C /* MetalRenderer.h in Sources */ = {isa = PBXBuildFile; fileRef = 38837799CB75A0D8C90D4F0F /* MetalRenderer.h */; };
+		189A94110231D38F1B18C975 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83EDA7DB1D91A94BFB20DB6 /* Metal.framework */; };
+		18F0D72AA6F3A392C625C3AE /* MetalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64463D73A5BB3FDF0FACC4B1 /* MetalRenderer.m */; };
+		2EA09736056ABBA502D5CA28 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBE27071FCB65577469517 /* EditorViewController.swift */; };
+		33E39DE03B03251048247253 /* LuduvoEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A4D7ED17005E54F9FBB1FB0 /* LuduvoEngine.mm */; };
+		3628410C77DDCEBCF0CF24B0 /* MoltenVKWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A70F96538A304A34842D488 /* MoltenVKWrapper.cpp */; };
+		38A381D3050FD7B06DD57044 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231E02509BE3D1AB751AC3E /* GameViewController.swift */; };
+		3A35DD06F033DF2B0A9B2168 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83EDA7DB1D91A94BFB20DB6 /* Metal.framework */; };
+		3D8AB86491F0480A058DA776 /* MoltenVKWrapper.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E2553980537201191A383626 /* MoltenVKWrapper.hpp */; };
+		467A38B33E9CD8D8A1B2D321 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE32D4DEA2F9E6E3529A47E /* Assets.xcassets */; };
+		46EAA760F72B5EE2BA32C09C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE32D4DEA2F9E6E3529A47E /* Assets.xcassets */; };
+		4954C210288DC1DC93836137 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5E92DEA9C888638F6A7EB8 /* QuartzCore.framework */; };
+		4DE11F4AFD4A2D4AA1899761 /* luduvo_engine_api.h in Sources */ = {isa = PBXBuildFile; fileRef = 040C28532C1B72B1AA9BD4EA /* luduvo_engine_api.h */; };
+		565BAD2A73AA267ECF123778 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BB888D12012945BCFD2746F /* LaunchScreen.storyboard */; };
+		56C0A51358FD80E670B37FB4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231E02509BE3D1AB751AC3E /* GameViewController.swift */; };
+		5849E18273A02D428D958EA8 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A122610812CFFA9C1234F54 /* MetalKit.framework */; };
+		5BC1EC85A44EA7364B46EAFA /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBE27071FCB65577469517 /* EditorViewController.swift */; };
+		5C8B170CBC9937C6CF3BE1B3 /* MetalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64463D73A5BB3FDF0FACC4B1 /* MetalRenderer.m */; };
+		6AF230D1C0B47865D83CB8D1 /* libMoltenVK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D69C17F36FABFE6580015DD4 /* libMoltenVK.a */; };
+		7C44E312B3E7C5338835AD37 /* MetalRenderer.h in Sources */ = {isa = PBXBuildFile; fileRef = 38837799CB75A0D8C90D4F0F /* MetalRenderer.h */; };
+		7E38215C97B7F5C529E60A85 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A122610812CFFA9C1234F54 /* MetalKit.framework */; };
+		7EC77171CF378D22F6712E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCA4328330D0F900DB50924 /* AppDelegate.swift */; };
+		81FC335F01396E55601829C8 /* LuduvoEngine.h in Sources */ = {isa = PBXBuildFile; fileRef = A9AD734F8B02EBFF916F0B5E /* LuduvoEngine.h */; };
+		932FC84BA8360D60B3DF2624 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5E92DEA9C888638F6A7EB8 /* QuartzCore.framework */; };
+		93DF845D9D5E1E4737EF78E2 /* Luduvo-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 3F6507B4EE4656C470598D2E /* Luduvo-Bridging-Header.h */; };
+		9C6C1C45685D4AA5C973E772 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 179B672F00822DA9A7276D53 /* UIKit.framework */; };
+		9E8BFC60D26978049F089235 /* LuduvoEngine.h in Sources */ = {isa = PBXBuildFile; fileRef = A9AD734F8B02EBFF916F0B5E /* LuduvoEngine.h */; };
+		A5971958FEF6743C661B97C8 /* EngineBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73612BAB092B69A9F2CC975 /* EngineBridge.cpp */; };
+		B2B57A5BD366FA93E93C7712 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DE5CF1A494FB460886F8F6 /* GameController.framework */; };
+		BBA7B773B9F6857EF612ECD2 /* luduvo_engine_api.h in Sources */ = {isa = PBXBuildFile; fileRef = 040C28532C1B72B1AA9BD4EA /* luduvo_engine_api.h */; };
+		BBF84791E181E3D758912953 /* TouchControlOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B40E2B22D000F06EF688CC4 /* TouchControlOverlay.swift */; };
+		BD6A0226AD5F57AF37A824F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 179B672F00822DA9A7276D53 /* UIKit.framework */; };
+		C70C1D8EF7DDE0A6A34787A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BB888D12012945BCFD2746F /* LaunchScreen.storyboard */; };
+		C77E1510F19486DFCAC8E5D6 /* Luduvo-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 3F6507B4EE4656C470598D2E /* Luduvo-Bridging-Header.h */; };
+		CB062440AA919427EB67893B /* LuduvoEngineShim.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAC9B591F71802B540FA4EE /* LuduvoEngineShim.m */; };
+		D0A33C419856B13A0D549D7A /* LuduvoShellShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = A13634646387BF4DC18AC503 /* LuduvoShellShaders.metal */; };
+		D5619D74C06B7B8BC21D7E4B /* MoltenVKWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A70F96538A304A34842D488 /* MoltenVKWrapper.cpp */; };
+		DD7089E56DF494BFB11F04B4 /* MoltenVKWrapper.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E2553980537201191A383626 /* MoltenVKWrapper.hpp */; };
+		E14A8B02990F07FEB3A9CB02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89BDFEEE8A00CC22ED00860 /* Foundation.framework */; };
+		E2E8A808F37EF408B88FC0E8 /* libMoltenVK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D69C17F36FABFE6580015DD4 /* libMoltenVK.a */; };
+		F05575DB9C68FB5DA25D8311 /* LuduvoShellShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = A13634646387BF4DC18AC503 /* LuduvoShellShaders.metal */; };
+		FA625F15BAE43A6A0CB1A448 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DE5CF1A494FB460886F8F6 /* GameController.framework */; };
+		FC03001AAD2C67EAC1300E6A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89BDFEEE8A00CC22ED00860 /* Foundation.framework */; };
+		FD2AD1A53B099DB8BD14AF16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1954EE42351FC8E29144FCA /* CoreGraphics.framework */; };
+		FE15658727882B31C8F8AE56 /* EngineBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73612BAB092B69A9F2CC975 /* EngineBridge.cpp */; };
+		FFDD72B9226DF311C283EBAE /* LuduvoEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A4D7ED17005E54F9FBB1FB0 /* LuduvoEngine.mm */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		ABCDEF25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ABCDEF26 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ABCDEF27;
-			remoteInfo = "MoltenVK";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		ABCDEF02 /* LuduvoEngine.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LuduvoEngine.mm; sourceTree = "<group>"; };
-		ABCDEF04 /* MetalRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetalRenderer.m; sourceTree = "<group>"; };
-		ABCDEF06 /* MoltenVKWrapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MoltenVKWrapper.cpp; sourceTree = "<group>"; };
-		ABCDEF08 /* EngineBridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EngineBridge.cpp; sourceTree = "<group>"; };
-		ABCDEF10 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		ABCDEF12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ABCDEF14 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		ABCDEF16 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
-		ABCDEF18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		ABCDEF20 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ABCDEF22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABCDEF24 /* luduvo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = luduvo.entitlements; sourceTree = "<group>"; };
-		ABCDEF28 /* libluduvo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libluduvo.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABCDEF29 /* libluduvo_editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libluduvo_editor.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		040C28532C1B72B1AA9BD4EA /* luduvo_engine_api.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = luduvo_engine_api.h; path = Luduvo/Engine/luduvo_engine_api.h; sourceTree = "<group>"; };
+		0DE32D4DEA2F9E6E3529A47E /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Luduvo/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		179B672F00822DA9A7276D53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1A5E92DEA9C888638F6A7EB8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1E4D31014A3798F8794FA9D3 /* Luduvo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luduvo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F4A2FB2CC12114E886922CC /* libMoltenVK.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libMoltenVK.a; path = Vendor/MoltenVK/lib/libMoltenVK.a; sourceTree = "<group>"; };
+		2FEB54E131B8D2BEE5B85492 /* luduvo.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; name = luduvo.entitlements; path = Luduvo/Resources/luduvo.entitlements; sourceTree = "<group>"; };
+		35DE5CF1A494FB460886F8F6 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
+		38837799CB75A0D8C90D4F0F /* MetalRenderer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MetalRenderer.h; path = Luduvo/Engine/MetalRenderer.h; sourceTree = "<group>"; };
+		3DCA4328330D0F900DB50924 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Luduvo/Source/AppDelegate.swift; sourceTree = "<group>"; };
+		3F6507B4EE4656C470598D2E /* Luduvo-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Luduvo-Bridging-Header.h"; path = "Luduvo/Source/Luduvo-Bridging-Header.h"; sourceTree = "<group>"; };
+		4B40E2B22D000F06EF688CC4 /* TouchControlOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TouchControlOverlay.swift; path = Luduvo/Source/TouchControlOverlay.swift; sourceTree = "<group>"; };
+		5A122610812CFFA9C1234F54 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		64463D73A5BB3FDF0FACC4B1 /* MetalRenderer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MetalRenderer.m; path = Luduvo/Engine/MetalRenderer.m; sourceTree = "<group>"; };
+		6A70F96538A304A34842D488 /* MoltenVKWrapper.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = MoltenVKWrapper.cpp; path = Luduvo/Engine/MoltenVKWrapper.cpp; sourceTree = "<group>"; };
+		78BBE27071FCB65577469517 /* EditorViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditorViewController.swift; path = Luduvo/Source/EditorViewController.swift; sourceTree = "<group>"; };
+		7A4D7ED17005E54F9FBB1FB0 /* LuduvoEngine.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = LuduvoEngine.mm; path = Luduvo/Engine/LuduvoEngine.mm; sourceTree = "<group>"; };
+		9BB888D12012945BCFD2746F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Luduvo/Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A13634646387BF4DC18AC503 /* LuduvoShellShaders.metal */ = {isa = PBXFileReference; includeInIndex = 1; name = LuduvoShellShaders.metal; path = Luduvo/Engine/LuduvoShellShaders.metal; sourceTree = "<group>"; };
+		A1954EE42351FC8E29144FCA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A5A377E68BB536D9A58471C9 /* LuduvoEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuduvoEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9AD734F8B02EBFF916F0B5E /* LuduvoEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LuduvoEngine.h; path = Luduvo/Engine/LuduvoEngine.h; sourceTree = "<group>"; };
+		B83EDA7DB1D91A94BFB20DB6 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		C89BDFEEE8A00CC22ED00860 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CA10CBCFE9857742E47716CD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = Luduvo/Resources/Info.plist; sourceTree = "<group>"; };
+		D69C17F36FABFE6580015DD4 /* libMoltenVK.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libMoltenVK.a; path = Vendor/MoltenVK/lib/libMoltenVK.a; sourceTree = "<group>"; };
+		E231E02509BE3D1AB751AC3E /* GameViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Luduvo/Source/GameViewController.swift; sourceTree = "<group>"; };
+		E2553980537201191A383626 /* MoltenVKWrapper.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; name = MoltenVKWrapper.hpp; path = Luduvo/Engine/MoltenVKWrapper.hpp; sourceTree = "<group>"; };
+		EBAC9B591F71802B540FA4EE /* LuduvoEngineShim.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LuduvoEngineShim.m; path = Luduvo/Engine/LuduvoEngineShim.m; sourceTree = "<group>"; };
+		F73612BAB092B69A9F2CC975 /* EngineBridge.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = EngineBridge.cpp; path = Luduvo/Engine/EngineBridge.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		ABCDEF30 /* Frameworks */ = {
+		47955681474D6F5226085658 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCDEF31 /* Metal.framework in Frameworks */,
-				ABCDEF32 /* MetalKit.framework in Frameworks */,
-				ABCDEF33 /* QuartzCore.framework in Frameworks */,
-				ABCDEF34 /* UIKit.framework in Frameworks */,
-				ABCDEF35 /* Foundation.framework in Frameworks */,
-				ABCDEF36 /* CoreGraphics.framework in Frameworks */,
-				ABCDEF37 /* GameController.framework in Frameworks */,
-				ABCDEF38 /* MoltenVK.framework in Frameworks */,
-				ABCDEF39 /* SDL3.framework in Frameworks */,
+				9C6C1C45685D4AA5C973E772 /* UIKit.framework in Frameworks */,
+				FC03001AAD2C67EAC1300E6A /* Foundation.framework in Frameworks */,
+				189A94110231D38F1B18C975 /* Metal.framework in Frameworks */,
+				7E38215C97B7F5C529E60A85 /* MetalKit.framework in Frameworks */,
+				4954C210288DC1DC93836137 /* QuartzCore.framework in Frameworks */,
+				FD2AD1A53B099DB8BD14AF16 /* CoreGraphics.framework in Frameworks */,
+				FA625F15BAE43A6A0CB1A448 /* GameController.framework in Frameworks */,
+				6AF230D1C0B47865D83CB8D1 /* libMoltenVK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E51C9A2BB51222269CC02139 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD6A0226AD5F57AF37A824F0 /* UIKit.framework in Frameworks */,
+				E14A8B02990F07FEB3A9CB02 /* Foundation.framework in Frameworks */,
+				3A35DD06F033DF2B0A9B2168 /* Metal.framework in Frameworks */,
+				5849E18273A02D428D958EA8 /* MetalKit.framework in Frameworks */,
+				932FC84BA8360D60B3DF2624 /* QuartzCore.framework in Frameworks */,
+				07D04594FE8E72ECFB7A33C0 /* CoreGraphics.framework in Frameworks */,
+				B2B57A5BD366FA93E93C7712 /* GameController.framework in Frameworks */,
+				E2E8A808F37EF408B88FC0E8 /* libMoltenVK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ABCDEF40 /* Luduvo */ = {
+		2CBFAF87EA6FF38C8BCEA9D4 /* Luduvo */ = {
 			isa = PBXGroup;
 			children = (
-				ABCDEF41 /* Source */,
-				ABCDEF42 /* Engine */,
-				ABCDEF43 /* Resources */,
-				ABCDEF44 /* Frameworks */,
-				ABCDEF45 /* Products */,
+				B909FF2CE9494710189A2B4E /* Source */,
+				30DB8CDE4A33CF00F30A6F47 /* Engine */,
+				FF46D316EDA77296D8164B2F /* Resources */,
 			);
-			path = Luduvo;
+			name = Luduvo;
+			sourceTree = SOURCE_ROOT;
+		};
+		30DB8CDE4A33CF00F30A6F47 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				A9AD734F8B02EBFF916F0B5E /* LuduvoEngine.h */,
+				7A4D7ED17005E54F9FBB1FB0 /* LuduvoEngine.mm */,
+				EBAC9B591F71802B540FA4EE /* LuduvoEngineShim.m */,
+				040C28532C1B72B1AA9BD4EA /* luduvo_engine_api.h */,
+				38837799CB75A0D8C90D4F0F /* MetalRenderer.h */,
+				64463D73A5BB3FDF0FACC4B1 /* MetalRenderer.m */,
+				E2553980537201191A383626 /* MoltenVKWrapper.hpp */,
+				6A70F96538A304A34842D488 /* MoltenVKWrapper.cpp */,
+				F73612BAB092B69A9F2CC975 /* EngineBridge.cpp */,
+				A13634646387BF4DC18AC503 /* LuduvoShellShaders.metal */,
+			);
+			name = Engine;
+			sourceTree = SOURCE_ROOT;
+		};
+		327CF58FE03C31FD81D5DEFF = {
+			isa = PBXGroup;
+			children = (
+				CD5B42C7245D581435D3FA76 /* Products */,
+				EA3EA26D694650DB44833639 /* Frameworks */,
+				2CBFAF87EA6FF38C8BCEA9D4 /* Luduvo */,
+				BB5CA93786352C045112D599 /* Vendor */,
+			);
 			sourceTree = "<group>";
 		};
-		ABCDEF41 /* Source */ = {
+		3364736D84F4BE6011F8C51E /* MoltenVK */ = {
 			isa = PBXGroup;
 			children = (
-				ABCDEF12 /* AppDelegate.swift */,
-				ABCDEF14 /* GameViewController.swift */,
-				ABCDEF16 /* EditorViewController.swift */,
-				ABCDEF10 /* main.m */,
+				1F4A2FB2CC12114E886922CC /* libMoltenVK.a */,
+				D69C17F36FABFE6580015DD4 /* libMoltenVK.a */,
 			);
-			name = "Source";
+			name = MoltenVK;
+			sourceTree = SOURCE_ROOT;
+		};
+		B7C52EF54A2A6D8F4A5D6264 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
-		ABCDEF42 /* Engine */ = {
+		B909FF2CE9494710189A2B4E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				ABCDEF02 /* LuduvoEngine.mm */,
-				ABCDEF04 /* MetalRenderer.m */,
-				ABCDEF06 /* MoltenVKWrapper.cpp */,
-				ABCDEF08 /* EngineBridge.cpp */,
+				3DCA4328330D0F900DB50924 /* AppDelegate.swift */,
+				E231E02509BE3D1AB751AC3E /* GameViewController.swift */,
+				78BBE27071FCB65577469517 /* EditorViewController.swift */,
+				4B40E2B22D000F06EF688CC4 /* TouchControlOverlay.swift */,
+				3F6507B4EE4656C470598D2E /* Luduvo-Bridging-Header.h */,
 			);
-			name = "Engine";
+			name = Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		BB5CA93786352C045112D599 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				3364736D84F4BE6011F8C51E /* MoltenVK */,
+			);
+			name = Vendor;
+			sourceTree = SOURCE_ROOT;
+		};
+		CD5B42C7245D581435D3FA76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E4D31014A3798F8794FA9D3 /* Luduvo.app */,
+				A5A377E68BB536D9A58471C9 /* LuduvoEditor.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
-		ABCDEF43 /* Resources */ = {
+		EA3EA26D694650DB44833639 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABCDEF18 /* Assets.xcassets */,
-				ABCDEF20 /* LaunchScreen.storyboard */,
-				ABCDEF22 /* Info.plist */,
-				ABCDEF24 /* luduvo.entitlements */,
+				179B672F00822DA9A7276D53 /* UIKit.framework */,
+				C89BDFEEE8A00CC22ED00860 /* Foundation.framework */,
+				B83EDA7DB1D91A94BFB20DB6 /* Metal.framework */,
+				5A122610812CFFA9C1234F54 /* MetalKit.framework */,
+				1A5E92DEA9C888638F6A7EB8 /* QuartzCore.framework */,
+				A1954EE42351FC8E29144FCA /* CoreGraphics.framework */,
+				35DE5CF1A494FB460886F8F6 /* GameController.framework */,
+				B7C52EF54A2A6D8F4A5D6264 /* iOS */,
 			);
-			name = "Resources";
-			sourceTree = "<group>";
+			name = Frameworks;
+			sourceTree = SOURCE_ROOT;
 		};
-		ABCDEF44 /* Frameworks */ = {
+		FF46D316EDA77296D8164B2F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				ABCDEF31 /* Metal.framework */,
-				ABCDEF32 /* MetalKit.framework */,
-				ABCDEF33 /* QuartzCore.framework */,
-				ABCDEF34 /* UIKit.framework */,
-				ABCDEF35 /* Foundation.framework */,
-				ABCDEF36 /* CoreGraphics.framework */,
-				ABCDEF37 /* GameController.framework */,
-				ABCDEF38 /* MoltenVK.framework */,
-				ABCDEF39 /* SDL3.framework */,
+				0DE32D4DEA2F9E6E3529A47E /* Assets.xcassets */,
+				9BB888D12012945BCFD2746F /* LaunchScreen.storyboard */,
+				CA10CBCFE9857742E47716CD /* Info.plist */,
+				2FEB54E131B8D2BEE5B85492 /* luduvo.entitlements */,
 			);
-			name = "Frameworks";
-			sourceTree = "<group>";
-		};
-		ABCDEF45 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ABCDEF28 /* libluduvo.a */,
-				ABCDEF29 /* libluduvo_editor.a */,
-			);
-			name = "Products";
-			sourceTree = "<group>";
+			name = Resources;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ABCDEF46 /* Luduvo */ = {
+		985E70876945CE176981F6B6 /* LuduvoEditor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ABCDEF47 /* Build configuration list for PBXNativeTarget "Luduvo" */;
+			buildConfigurationList = B33F545088C2E351114EB58A /* Build configuration list for PBXNativeTarget "LuduvoEditor" */;
 			buildPhases = (
-				ABCDEF48 /* Sources */,
-				ABCDEF30 /* Frameworks */,
-				ABCDEF49 /* Resources */,
+				ECB96FD2E9FF5996B81D2439 /* Sources */,
+				E51C9A2BB51222269CC02139 /* Frameworks */,
+				70AD2C0CE1AE50725E5A452F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Luduvo";
-			productName = "Luduvo";
-			productReference = ABCDEF50 /* Luduvo.app */;
+			name = LuduvoEditor;
+			productName = LuduvoEditor;
+			productReference = A5A377E68BB536D9A58471C9 /* LuduvoEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ABCDEF51 /* LuduvoEditor */ = {
+		AF09E6735E98487B710D9D99 /* Luduvo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ABCDEF52 /* Build configuration list for PBXNativeTarget "LuduvoEditor" */;
+			buildConfigurationList = 20061E1524BA1B08A248275C /* Build configuration list for PBXNativeTarget "Luduvo" */;
 			buildPhases = (
-				ABCDEF53 /* Sources */,
-				ABCDEF30 /* Frameworks */,
-				ABCDEF49 /* Resources */,
+				16DE10610DFBEAFBEE51877D /* Sources */,
+				47955681474D6F5226085658 /* Frameworks */,
+				C880D9A0B85863B5FC2FF576 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "LuduvoEditor";
-			productName = "LuduvoEditor";
-			productReference = ABCDEF54 /* LuduvoEditor.app */;
+			name = Luduvo;
+			productName = Luduvo;
+			productReference = 1E4D31014A3798F8794FA9D3 /* Luduvo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		ABCDEF26 /* Project object */ = {
+		2747B5CC0336946C0ABCA5E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
-				TargetAttributes = {
-					ABCDEF46 = {
-						CreatedOnToolsVersion = 15.0;
-						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
-					};
-					ABCDEF51 = {
-						CreatedOnToolsVersion = 15.0;
-						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
-					};
-				};
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
 			};
-			buildConfigurationList = ABCDEF55 /* Build configuration list for PBXProject "Luduvo" */;
-			compatibilityVersion = "Xcode 15.0";
-			developmentRegion = "en";
+			buildConfigurationList = DA8E358E1674DA3AE794A961 /* Build configuration list for PBXProject "Luduvo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = ABCDEF40 /* Luduvo */;
+			mainGroup = 327CF58FE03C31FD81D5DEFF;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 100;
+			productRefGroup = CD5B42C7245D581435D3FA76 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
-				ABCDEF46 /* Luduvo */,
-				ABCDEF51 /* LuduvoEditor */,
+				AF09E6735E98487B710D9D99 /* Luduvo */,
+				985E70876945CE176981F6B6 /* LuduvoEditor */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		ABCDEF49 /* Resources */ = {
+		70AD2C0CE1AE50725E5A452F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCDEF17 /* Assets.xcassets in Resources */,
-				ABCDEF19 /* LaunchScreen.storyboard in Resources */,
-				ABCDEF21 /* Info.plist in Resources */,
-				ABCDEF23 /* luduvo.entitlements in Resources */,
+				467A38B33E9CD8D8A1B2D321 /* Assets.xcassets in Resources */,
+				C70C1D8EF7DDE0A6A34787A4 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C880D9A0B85863B5FC2FF576 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46EAA760F72B5EE2BA32C09C /* Assets.xcassets in Resources */,
+				565BAD2A73AA267ECF123778 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		ABCDEF48 /* Sources */ = {
+		16DE10610DFBEAFBEE51877D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCDEF01 /* LuduvoEngine.mm in Sources */,
-				ABCDEF03 /* MetalRenderer.m in Sources */,
-				ABCDEF05 /* MoltenVKWrapper.cpp in Sources */,
-				ABCDEF07 /* EngineBridge.cpp in Sources */,
-				ABCDEF09 /* main.m in Sources */,
-				ABCDEF11 /* AppDelegate.swift in Sources */,
-				ABCDEF13 /* GameViewController.swift in Sources */,
-				ABCDEF15 /* EditorViewController.swift in Sources */,
+				00BD3ED57CA9667C0E61E04D /* AppDelegate.swift in Sources */,
+				38A381D3050FD7B06DD57044 /* GameViewController.swift in Sources */,
+				5BC1EC85A44EA7364B46EAFA /* EditorViewController.swift in Sources */,
+				BBF84791E181E3D758912953 /* TouchControlOverlay.swift in Sources */,
+				93DF845D9D5E1E4737EF78E2 /* Luduvo-Bridging-Header.h in Sources */,
+				9E8BFC60D26978049F089235 /* LuduvoEngine.h in Sources */,
+				33E39DE03B03251048247253 /* LuduvoEngine.mm in Sources */,
+				CB062440AA919427EB67893B /* LuduvoEngineShim.m in Sources */,
+				BBA7B773B9F6857EF612ECD2 /* luduvo_engine_api.h in Sources */,
+				7C44E312B3E7C5338835AD37 /* MetalRenderer.h in Sources */,
+				18F0D72AA6F3A392C625C3AE /* MetalRenderer.m in Sources */,
+				3D8AB86491F0480A058DA776 /* MoltenVKWrapper.hpp in Sources */,
+				D5619D74C06B7B8BC21D7E4B /* MoltenVKWrapper.cpp in Sources */,
+				A5971958FEF6743C661B97C8 /* EngineBridge.cpp in Sources */,
+				D0A33C419856B13A0D549D7A /* LuduvoShellShaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABCDEF53 /* Sources */ = {
+		ECB96FD2E9FF5996B81D2439 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCDEF01 /* LuduvoEngine.mm in Sources */,
-				ABCDEF03 /* MetalRenderer.m in Sources */,
-				ABCDEF05 /* MoltenVKWrapper.cpp in Sources */,
-				ABCDEF07 /* EngineBridge.cpp in Sources */,
-				ABCDEF09 /* main.m in Sources */,
-				ABCDEF11 /* AppDelegate.swift in Sources */,
-				ABCDEF13 /* GameViewController.swift in Sources */,
-				ABCDEF15 /* EditorViewController.swift in Sources */,
+				7EC77171CF378D22F6712E8B /* AppDelegate.swift in Sources */,
+				56C0A51358FD80E670B37FB4 /* GameViewController.swift in Sources */,
+				2EA09736056ABBA502D5CA28 /* EditorViewController.swift in Sources */,
+				0B32285107165CBF5F7E8EB8 /* TouchControlOverlay.swift in Sources */,
+				C77E1510F19486DFCAC8E5D6 /* Luduvo-Bridging-Header.h in Sources */,
+				81FC335F01396E55601829C8 /* LuduvoEngine.h in Sources */,
+				FFDD72B9226DF311C283EBAE /* LuduvoEngine.mm in Sources */,
+				09F3F82E4FC4C838D1D2B56A /* LuduvoEngineShim.m in Sources */,
+				4DE11F4AFD4A2D4AA1899761 /* luduvo_engine_api.h in Sources */,
+				14C0E9A432B137BEE227D98C /* MetalRenderer.h in Sources */,
+				5C8B170CBC9937C6CF3BE1B3 /* MetalRenderer.m in Sources */,
+				DD7089E56DF494BFB11F04B4 /* MoltenVKWrapper.hpp in Sources */,
+				3628410C77DDCEBCF0CF24B0 /* MoltenVKWrapper.cpp in Sources */,
+				FE15658727882B31C8F8AE56 /* EngineBridge.cpp in Sources */,
+				F05575DB9C68FB5DA25D8311 /* LuduvoShellShaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		ABCDEF18 /* Assets.xcassets */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = Assets.xcassets;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		ABCDEF56 /* Debug */ = {
+		0BC594F07B005BE43D27AA10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_OBJC = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = Luduvo/Resources/luduvo.entitlements;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+					"$(inherited)",
 					"LDV_PLATFORM_IOS=1",
 					"LDV_ENABLE_MOLTENVK=1",
-					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"$(SRCROOT)/Vendor/MoltenVK/include",
+					"$(SRCROOT)/Luduvo/Engine",
+				);
+				INFOPLIST_FILE = Luduvo/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Luduvo Studio";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LDV_ENABLE_MOLTENVK = 1;
+				LDV_PLATFORM_IOS = 1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Vendor/MoltenVK/lib",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luduvo.studio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.9;
+				SWIFT_OBJC_BRIDGING_HEADER = "Luduvo/Source/Luduvo-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "LuduvoEditor-Swift.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		106AB941EF096B6650D83437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = Luduvo/Resources/luduvo.entitlements;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"LDV_PLATFORM_IOS=1",
+					"LDV_ENABLE_MOLTENVK=1",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Vendor/MoltenVK/include",
+					"$(SRCROOT)/Luduvo/Engine",
+				);
+				INFOPLIST_FILE = Luduvo/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Luduvo Studio";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LDV_ENABLE_MOLTENVK = 1;
+				LDV_PLATFORM_IOS = 1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Vendor/MoltenVK/lib",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luduvo.studio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Luduvo/Source/Luduvo-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "LuduvoEditor-Swift.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		ABCDEF57 /* Release */ = {
+		501580CEEC5FB4F8BBF80077 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_OBJC = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"LDV_PLATFORM_IOS=1",
-					"LDV_ENABLE_MOLTENVK=1",
+					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -392,87 +512,204 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = NO;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.9;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		9410A339FB367221C43C4040 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = Luduvo/Resources/luduvo.entitlements;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"LDV_PLATFORM_IOS=1",
+					"LDV_ENABLE_MOLTENVK=1",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Vendor/MoltenVK/include",
+					"$(SRCROOT)/Luduvo/Engine",
+				);
+				INFOPLIST_FILE = Luduvo/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Luduvo;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LDV_ENABLE_MOLTENVK = 1;
+				LDV_PLATFORM_IOS = 1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Vendor/MoltenVK/lib",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luduvo.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Luduvo/Source/Luduvo-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Luduvo-Swift.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C45716093E90A11D8C99EA4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = Luduvo/Resources/luduvo.entitlements;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"LDV_PLATFORM_IOS=1",
+					"LDV_ENABLE_MOLTENVK=1",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Vendor/MoltenVK/include",
+					"$(SRCROOT)/Luduvo/Engine",
+				);
+				INFOPLIST_FILE = Luduvo/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Luduvo;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LDV_ENABLE_MOLTENVK = 1;
+				LDV_PLATFORM_IOS = 1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Vendor/MoltenVK/lib",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luduvo.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Luduvo/Source/Luduvo-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Luduvo-Swift.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E615FC3FD2AF39859F9C1958 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ABCDEF55 /* Build configuration list for PBXProject "Luduvo" */ = {
+		20061E1524BA1B08A248275C /* Build configuration list for PBXNativeTarget "Luduvo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABCDEF56 /* Debug */,
-				ABCDEF57 /* Release */,
+				C45716093E90A11D8C99EA4D /* Release */,
+				9410A339FB367221C43C4040 /* Debug */,
 			);
-			defaultConfigurationName = "Release";
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		ABCDEF47 /* Build configuration list for PBXNativeTarget "Luduvo" */ = {
+		B33F545088C2E351114EB58A /* Build configuration list for PBXNativeTarget "LuduvoEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABCDEF56 /* Debug */,
-				ABCDEF57 /* Release */,
+				0BC594F07B005BE43D27AA10 /* Release */,
+				106AB941EF096B6650D83437 /* Debug */,
 			);
-			defaultConfigurationName = "Release";
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		ABCDEF52 /* Build configuration list for PBXNativeTarget "LuduvoEditor" */ = {
+		DA8E358E1674DA3AE794A961 /* Build configuration list for PBXProject "Luduvo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABCDEF56 /* Debug */,
-				ABCDEF57 /* Release */,
+				501580CEEC5FB4F8BBF80077 /* Debug */,
+				E615FC3FD2AF39859F9C1958 /* Release */,
 			);
-			defaultConfigurationName = "Release";
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCScheme section */
-		ABCDEF58 /* Luduvo */ = {
-			isa = XCScheme;
-			LastUpgradeVersion = 1500;
-			buildAction = {
-				buildActionEntries = (
-					{
-						buildFor = running;
-						buildSettings = {
-							COPY_PHASE_STRIP = NO;
-						};
-					},
-				);
-				parallelizeBuildables = YES;
-			};
-			testAction = {
-				buildConfiguration = Debug;
-				testTargets = (
-				);
-			};
-			launchAction = {
-				buildConfiguration = Debug;
-				launchAutomaticallySubstyle = 2;
-			};
-			profileAction = {
-				buildConfiguration = Release;
-				shouldUseLaunchSchemeArgsEnv = NO;
-			};
-			analyzeAction = {
-				buildConfiguration = Debug;
-			};
-			archiveAction = {
-				buildConfiguration = Release;
-				revealArchiveInOrganizer = YES;
-			};
-		};
-/* End XCScheme section */
-
 	};
-	rootObject = ABCDEF26 /* Project object */;
+	rootObject = 2747B5CC0336946C0ABCA5E8 /* Project object */;
 }

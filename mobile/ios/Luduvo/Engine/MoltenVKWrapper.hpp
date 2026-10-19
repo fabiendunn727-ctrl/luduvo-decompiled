@@ -2,21 +2,26 @@
 // Provides Vulkan-to-Metal translation layer
 #pragma once
 
-#include <vulkan/vulkan.h>
+// mvk_vulkan.h must come first: it selects the correct platform surface
+// headers (VK_USE_PLATFORM_METAL_EXT) before vulkan.h is processed.
 #include <MoltenVK/mvk_vulkan.h>
+#include <vulkan/vulkan.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 // Initialize MoltenVK for the engine's Vulkan backend
-VkResult ldv_moltenvk_initialize(VkInstance* instance, VkPhysicalDevice* physicalDevice, VkDevice* device, VkQueue* graphicsQueue, VkSurfaceKHR* surface);
+VkResult ldv_moltenvk_initialize(VkInstance *instance, VkPhysicalDevice *physicalDevice, VkDevice *device, VkQueue *graphicsQueue);
+
+// Create a Vulkan surface for the iOS CAMetalLayer owned by the MTKView.
+VkResult ldv_moltenvk_create_surface(VkInstance instance, void *metalLayer, VkSurfaceKHR *surface);
 
 // Create swapchain for iOS CAMetalLayer
-VkResult ldv_moltenvk_create_swapchain(VkDevice device, VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, VkSwapchainKHR* swapchain, uint32_t* imageCount, VkFormat* imageFormat, VkExtent2D* extent);
+VkResult ldv_moltenvk_create_swapchain(VkDevice device, VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, VkSwapchainKHR *swapchain, uint32_t *imageCount, VkFormat *imageFormat, VkExtent2D *extent);
 
 // Acquire next image
-VkResult ldv_moltenvk_acquire_next_image(VkDevice device, VkSwapchainKHR swapchain, uint64_t timeout, VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex);
+VkResult ldv_moltenvk_acquire_next_image(VkDevice device, VkSwapchainKHR swapchain, uint64_t timeout, VkSemaphore semaphore, VkFence fence, uint32_t *imageIndex);
 
 // Present image
 VkResult ldv_moltenvk_present(VkQueue queue, VkSwapchainKHR swapchain, uint32_t imageIndex, VkSemaphore waitSemaphore);
@@ -38,11 +43,17 @@ public:
     ~Swapchain() { cleanup(); }
 
     bool initialize(void* metalLayer, uint32_t width, uint32_t height);
+    bool resize(uint32_t width, uint32_t height);
     void cleanup();
 
-    VkResult acquireNextImage(uint64_t timeout, VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex);
+    VkResult acquireNextImage(uint64_t timeout, VkSemaphore semaphore, VkFence fence, uint32_t *imageIndex);
     VkResult present(VkQueue queue, VkSemaphore waitSemaphore);
 
+    VkInstance getInstance() const { return instance_; }
+    VkPhysicalDevice getPhysicalDevice() const { return physicalDevice_; }
+    VkDevice getDevice() const { return device_; }
+    VkQueue getGraphicsQueue() const { return graphicsQueue_; }
+    VkSurfaceKHR getSurface() const { return surface_; }
     VkSwapchainKHR get() const { return swapchain_; }
     VkFormat getFormat() const { return format_; }
     VkExtent2D getExtent() const { return extent_; }

@@ -1,20 +1,117 @@
 name: mobile-ios
-on: [push, workflow_dispatch]
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'mobile/ios/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'mobile/ios/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
-    runs-on: macos-latest
+    name: Build iOS IPA
+    runs-on: macos-15
+    timeout-minutes: 45
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Build for iOS Simulator
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
         run: |
-          xcodebuild -project mobile/ios/Luduvo.xcodeproj \
+          xcodebuild -version
+          swift --version
+
+      # --- Client (game) -----------------------------------------------------
+      - name: Build Luduvo client
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project mobile/ios/Luduvo.xcodeproj \
             -scheme Luduvo \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
-            -configuration Debug \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_ENTITLEMENTS="" \
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            ENABLE_BITCODE=NO \
+            ONLY_ACTIVE_ARCH=NO \
+            ARCHS=arm64 \
             build
-      - name: Upload .app artifact
+
+      # --- Studio (editor) ---------------------------------------------------
+      - name: Build Luduvo studio
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project mobile/ios/Luduvo.xcodeproj \
+            -scheme LuduvoEditor \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_ENTITLEMENTS="" \
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            ENABLE_BITCODE=NO \
+            ONLY_ACTIVE_ARCH=NO \
+            ARCHS=arm64 \
+            build
+
+      - name: Package client IPA
+        run: |
+          set -euo pipefail
+          APP="build/Build/Products/Release-iphoneos/Luduvo.app"
+          test -d "$APP" || { echo "client app not found"; exit 1; }
+          rm -rf Payload && mkdir Payload
+          cp -R "$APP" Payload/
+          # An IPA is a zip with the app under Payload/.
+          zip -qry Luduvo-unsigned.ipa Payload
+          ls -la Luduvo-unsigned.ipa
+
+      - name: Package studio IPA
+        run: |
+          set -euo pipefail
+          APP="build/Build/Products/Release-iphoneos/LuduvoEditor.app"
+          test -d "$APP" || { echo "studio app not found"; exit 1; }
+          rm -rf PayloadStudio && mkdir PayloadStudio
+          cp -R "$APP" PayloadStudio/
+          zip -qry LuduvoStudio-unsigned.ipa PayloadStudio
+          ls -la LuduvoStudio-unsigned.ipa
+
+      - name: Verify IPA structure
+        run: |
+          set -euo pipefail
+          unzip -l Luduvo-unsigned.ipa | head -20
+          echo "---"
+          unzip -l LuduvoStudio-unsigned.ipa | head -20
+
+      - name: Upload client IPA
         uses: actions/upload-artifact@v4
         with:
-          name: luduvo-ios-simulator
-          path: build/Build/Products/Debug-iphonesimulator/Luduvo.app
+          name: luduvo-ios-client-unsigned
+          path: Luduvo-unsigned.ipa
+          retention-days: 90
+          if-no-files-found: error
+
+      - name: Upload studio IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: luduvo-ios-studio-unsigned
+          path: LuduvoStudio-unsigned.ipa
+          retention-days: 90
+          if-no-files-found: error
