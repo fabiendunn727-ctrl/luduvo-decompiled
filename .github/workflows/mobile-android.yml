@@ -6,10 +6,12 @@ on:
     branches: [main, develop]
     paths:
       - 'mobile/android/**'
+      - '.github/workflows/mobile-android.yml'
   pull_request:
     branches: [main]
     paths:
       - 'mobile/android/**'
+      - '.github/workflows/mobile-android.yml'
   workflow_dispatch:
 
 concurrency:
