@@ -1,0 +1,157 @@
+name: iOS Native Engine Build (Sideload)
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'mobile/ios/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'mobile/ios/**'
+  workflow_dispatch:
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
+  IPHONEOS_DEPLOYMENT_TARGET: 15.0
+
+jobs:
+  build:
+    name: Build IPA (Unsigned for Sideloading)
+    runs-on: macos-14
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.0.app
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Cache SPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Install MoltenVK
+        run: |
+          brew install molten-vk
+          # Or fetch from GitHub releases
+          # curl -L https://github.com/KhronosGroup/MoltenVK/releases/download/v1.2.7/MoltenVK-macOS-1.2.7.dmg -o MoltenVK.dmg
+          # hdiutil attach MoltenVK.dmg
+          # cp -R /Volumes/MoltenVK/MoltenVK.framework /Library/Frameworks/
+          # hdiutil detach /Volumes/MoltenVK
+
+      - name: Install SDL3
+        run: |
+          brew install sdl3
+          # Ensure SDL3.framework is available
+
+      - name: Build Luduvo (Client)
+        run: |
+          xcodebuild \
+            -project mobile/ios/Luduvo.xcodeproj \
+            -scheme Luduvo \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_ENTITLEMENTS="" \
+            PROVISIONING_PROFILE="" \
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            ENABLE_BITCODE=NO \
+            ONLY_ACTIVE_ARCH=NO \
+            ARCHS="arm64 arm64e" \
+            VALID_ARCHS="arm64 arm64e" \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+            clean build
+
+      - name: Build LuduvoEditor (Studio)
+        run: |
+          xcodebuild \
+            -project mobile/ios/Luduvo.xcodeproj \
+            -scheme LuduvoEditor \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_ENTITLEMENTS="" \
+            PROVISIONING_PROFILE="" \
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            ENABLE_BITCODE=NO \
+            ONLY_ACTIVE_ARCH=NO \
+            ARCHS="arm64 arm64e" \
+            VALID_ARCHS="arm64 arm64e" \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+            clean build
+
+      - name: Create IPA (Client)
+        run: |
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/Luduvo.app Payload/
+          # Add embedded.mobileprovision for ad-hoc (optional)
+          zip -r Luduvo-unsigned.ipa Payload/
+          ls -la Luduvo-unsigned.ipa
+
+      - name: Create IPA (Editor)
+        run: |
+          mkdir -p PayloadEditor
+          cp -R build/Build/Products/Release-iphoneos/LuduvoEditor.app PayloadEditor/
+          zip -r LuduvoEditor-unsigned.ipa PayloadEditor/
+          ls -la LuduvoEditor-unsigned.ipa
+
+      - name: Verify IPA structure
+        run: |
+          unzip -l Luduvo-unsigned.ipa | head -20
+          unzip -l LuduvoEditor-unsigned.ipa | head -20
+
+      - name: Upload Client IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: luduvo-ios-client-unsigned
+          path: Luduvo-unsigned.ipa
+          retention-days: 90
+
+      - name: Upload Editor IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: luduvo-ios-editor-unsigned
+          path: LuduvoEditor-unsigned.ipa
+          retention-days: 90
+
+  test:
+    name: Unit Tests
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          xcodebuild test \
+            -project mobile/ios/Luduvo.xcodeproj \
+            -scheme Luduvo \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            ONLY_ACTIVE_ARCH=YES
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - run: swiftlint lint --path mobile/ios/Luduvo/Source --config .swiftlint.yml || true

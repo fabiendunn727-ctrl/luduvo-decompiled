@@ -1,0 +1,143 @@
+name: Android Native Engine Build
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'mobile/android/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'mobile/android/**'
+  workflow_dispatch:
+
+env:
+  GRADLE_OPTS: "-Xmx4g -Dorg.gradle.daemon=false"
+
+jobs:
+  build:
+    name: Build APK (armeabi-v7a, arm64-v8a, x86, x86_64)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: 35
+          ndk-version: '26.1.10909125'
+          cmake-version: '3.22.1'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts', '**/gradle.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Cache NDK dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/ndk
+          key: ${{ runner.os }}-ndk-${{ env.ANDROID_NDK_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-ndk-
+
+      - name: Generate keystore (debug)
+        run: |
+          mkdir -p app/keystore
+          keytool -genkeypair -keystore app/keystore/debug.jks -storepass buildoverse -keypass buildoverse \
+            -alias buildoverse -keyalg RSA -keysize 2048 -validity 10950 \
+            -dname "CN=Luduvo Debug, O=Luduvo, C=US" -storetype JKS
+
+      - name: Build Debug APK (all ABIs)
+        run: ./gradlew :app:assembleDebug --stacktrace
+        working-directory: ./mobile/android
+
+      - name: Build Release APK (all ABIs)
+        if: github.event_name != 'pull_request'
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew :app:assembleRelease --stacktrace
+        working-directory: ./mobile/android
+
+      - name: Verify APKs
+        run: |
+          echo "=== Debug APKs ==="
+          find . -name "*.apk" -path "*/debug/*" -exec ls -la {} \;
+          echo "=== Release APKs ==="
+          find . -name "*.apk" -path "*/release/*" -exec ls -la {} \;
+
+      - name: Upload Debug APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: luduvo-android-debug
+          path: mobile/android/app/build/outputs/apk/debug/*.apk
+          retention-days: 30
+
+      - name: Upload Release APKs
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: luduvo-android-release
+          path: mobile/android/app/build/outputs/apk/release/*.apk
+          retention-days: 90
+
+      - name: Upload AAB (for Play Store)
+        if: github.event_name != 'pull_request'
+        run: ./gradlew :app:bundleRelease --stacktrace
+        working-directory: ./mobile/android
+
+      - name: Upload AAB Artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: luduvo-android-aab
+          path: mobile/android/app/build/outputs/bundle/release/*.aab
+          retention-days: 90
+
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          api-level: 35
+      - run: ./gradlew :app:testDebugUnitTest --stacktrace
+        working-directory: ./mobile/android
+
+  lint:
+    name: Lint Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          api-level: 35
+      - run: ./gradlew :app:lintDebug --stacktrace
+        working-directory: ./mobile/android

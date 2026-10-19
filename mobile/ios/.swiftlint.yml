@@ -1,0 +1,29 @@
+# SwiftLint configuration for Luduvo iOS
+disabled_rules:
+  - line_length
+  - trailing_whitespace
+  - file_length
+  - function_body_length
+  - type_body_length
+  - cyclomatic_complexity
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+  - force_unwrapping
+  - implicit_return
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - sorted_imports
+  - trailing_closure
+
+included:
+  - mobile/ios/Luduvo/Source
+
+excluded:
+  - mobile/ios/Luduvo/Engine
+  - build
+  - .build
+
+reporter: "xcode"

@@ -1,0 +1,18 @@
+<resources>
+    <!-- Luduvo brand colors (dark theme) -->
+    <color name="luduvo_primary">#7C4DFF</color>
+    <color name="luduvo_primary_container">#5E35B1</color>
+    <color name="luduvo_secondary">#00E5FF</color>
+    <color name="luduvo_surface">#1E1E1E</color>
+    <color name="luduvo_background">#121212</color>
+    <color name="luduvo_on_primary">#FFFFFF</color>
+    <color name="luduvo_on_surface">#FFFFFF</color>
+    <color name="luduvo_error">#CF6679</color>
+    <color name="luduvo_outline">#333333</color>
+
+    <!-- Touch control colors -->
+    <color name="touch_stick_bg">#337C4DFF</color>
+    <color name="touch_stick_knob">#7C4DFF</color>
+    <color name="touch_button_bg">#3300E5FF</color>
+    <color name="touch_button_icon">#00E5FF</color>
+</resources>

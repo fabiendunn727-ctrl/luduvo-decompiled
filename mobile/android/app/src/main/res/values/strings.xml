@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Luduvo</string>
+    <string name="app_name_short">Luduvo</string>
+    <string name="game_join_failed">Failed to join game</string>
+    <string name="game_connecting">Connecting to server...</string>
+    <string name="game_loading">Loading world...</string>
+    <string name="permission_storage_desc">Luduvo needs storage access to download game assets</string>
+    <string name="permission_network_desc">Luduvo needs network access to connect to game servers</string>
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <style name="Theme.Luduvo" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/luduvo_primary</item>
+        <item name="colorPrimaryContainer">@color/luduvo_primary_container</item>
+        <item name="colorSecondary">@color/luduvo_secondary</item>
+        <item name="colorSurface">@color/luduvo_surface</item>
+        <item name="colorBackground">@color/luduvo_background</item>
+        <item name="colorOnPrimary">@color/luduvo_on_primary</item>
+        <item name="colorOnSurface">@color/luduvo_on_surface</item>
+        <item name="android:windowBackground">@color/luduvo_background</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.Luduvo.Fullscreen" parent="Theme.Luduvo">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Luduvo.Splash" parent="Theme.Luduvo.Fullscreen">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+</resources>
