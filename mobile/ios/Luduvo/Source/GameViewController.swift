@@ -112,16 +112,16 @@ class GameViewController: UIViewController {
                 self?.engine?.gamepadDPad(x: x, y: y)
             }
             pad.buttonA.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.a, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.cross, value: value, pressed: pressed)
             }
             pad.buttonB.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.b, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.circle, value: value, pressed: pressed)
             }
             pad.buttonX.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.x, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.square, value: value, pressed: pressed)
             }
             pad.buttonY.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.y, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.triangle, value: value, pressed: pressed)
             }
             pad.leftTrigger.valueChangedHandler = { [weak self] _, value, pressed in
                 self?.engine?.gamepadTrigger(.left, value: value, pressed: pressed)
@@ -134,16 +134,16 @@ class GameViewController: UIViewController {
                 self?.engine?.gamepadDPad(x: x, y: y)
             }
             pad.buttonA.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.a, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.cross, value: value, pressed: pressed)
             }
             pad.buttonB.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.b, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.circle, value: value, pressed: pressed)
             }
             pad.buttonX.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.x, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.square, value: value, pressed: pressed)
             }
             pad.buttonY.valueChangedHandler = { [weak self] _, value, pressed in
-                self?.engine?.gamepadButton(.y, value: value, pressed: pressed)
+                self?.engine?.gamepadButton(.triangle, value: value, pressed: pressed)
             }
         }
     }

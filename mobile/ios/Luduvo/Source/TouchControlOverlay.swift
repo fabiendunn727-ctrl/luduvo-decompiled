@@ -210,8 +210,7 @@ protocol VirtualStickDelegate: AnyObject {
 
 class VirtualStick: UIView {
 
-    enum StickType { case left, right }
-    var stickType: StickType = .left
+    var stickType: TouchControlOverlay.Stick = .left
     weak var delegate: VirtualStickDelegate?
 
     private var baseView: UIView!
@@ -319,15 +318,20 @@ protocol VirtualButtonDelegate: AnyObject {
 
 class VirtualButton: UIView {
 
-    enum ButtonType { case jump, sprint, action, inventory, chat }
-    var type: ButtonType
+    var type: TouchControlOverlay.Button
     weak var delegate: VirtualButtonDelegate?
 
     private var isPressed = false
     private var pressStartTime: CFTimeInterval = 0
 
-    init(frame: CGRect, type: ButtonType) {
+    init(frame: CGRect, type: TouchControlOverlay.Button) {
         self.type = type
+        super.init(frame: frame)
+        setup()
+    }
+
+    override init(frame: CGRect) {
+        self.type = .action
         super.init(frame: frame)
         setup()
     }
@@ -359,7 +363,7 @@ class VirtualButton: UIView {
         ])
     }
 
-    private func iconImage(for type: ButtonType) -> UIImage? {
+    private func iconImage(for type: TouchControlOverlay.Button) -> UIImage? {
         let config = UIImage.SymbolConfiguration(pointSize: 28, weight: .medium)
         switch type {
         case .jump: return UIImage(systemName: "arrow.up.circle.fill", withConfiguration: config)
